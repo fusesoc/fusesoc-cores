@@ -1,0 +1,47 @@
+CAPI=1
+[main]
+description = Wishbone BFM
+depend = wb_common
+simulators = icarus modelsim
+
+[fileset rtl_files]
+files =
+ wb_bfm_master.v
+ wb_bfm_slave.v
+ wb_bfm_memory.v
+ wb_bfm_transactor.v
+file_type = verilogSource
+
+[fileset tb]
+files =
+ bench/wb_bfm_tb.v
+file_type = verilogSource
+scope = private
+usage = sim
+
+[parameter transactions]
+datatype    = int
+description = Number of test bench transactions
+paramtype   = plusarg
+scope       = private
+
+[parameter subtransactions]
+datatype    = int
+description = Number of test subtransactions to run
+paramtype   = plusarg
+scope       = private
+
+[simulator]
+toplevel = wb_bfm_tb
+
+[icarus]
+depend = >=vlog_tb_utils-1.1
+
+[modelsim]
+depend = >=vlog_tb_utils-1.1
+
+[provider]
+name = github
+user = olofk
+repo = wb_bfm
+version = v1.1

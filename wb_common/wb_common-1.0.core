@@ -1,0 +1,17 @@
+CAPI=1
+[main]
+name = ::wb_common:1.0
+description = Common utility functions and parameters for the Wishbone bus
+
+[fileset common]
+files =
+ wb_common_params.v
+ wb_common.v
+file_type = verilogSource
+is_include_file = true
+
+[provider]
+name = github
+user = fusesoc
+repo = wb_common
+version = v1.0

@@ -1,0 +1,21 @@
+CAPI=1
+[main]
+description = Wishbone boot ROM component and a collection of basic boot loaders for OpenRISC 1000
+
+[fileset bootrom]
+files = wb_bootrom.v[file_type=verilogSource]
+
+[fileset bootloaders]
+files =
+ boot_loop.vh
+ clear_r3_and_jump_to_0x100.vh
+ led_blink.vh
+ spi_uimage_loader.vh
+file_type = verilogSource
+is_include_file = true
+
+[provider]
+name = github
+user = olofk
+repo = or1k_bootloaders
+version = v0.9.1

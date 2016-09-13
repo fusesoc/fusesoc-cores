@@ -2,7 +2,7 @@ CAPI=1
 [main]
 description = OpenCores SPI Core
 
-[rtl]
+[fileset rtl]
 files =
  rtl/verilog/fifo4.v
  rtl/verilog/simple_spi_top.v

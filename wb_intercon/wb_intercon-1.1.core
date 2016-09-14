@@ -2,8 +2,7 @@ CAPI=1
 [main]
 description = Wishbone Bus Interconnect utilities
 depend =
- verilog-arbiter-r1
- verilog_utils
+ >=verilog-arbiter-0-r1
  wb_common
 simulators = icarus modelsim
 
@@ -35,13 +34,13 @@ paramtype   = plusarg
 scope       = private
 
 [icarus]
-depend = >=vlog_tb_utils-1.0 >=wb_bfm-1.0
+depend = >=vlog_tb_utils-1.0 >=wb_bfm-1.1
 
 [modelsim]
-depend = >=vlog_tb_utils-1.0 >=wb_bfm-1.0
+depend = >=vlog_tb_utils-1.0 >=wb_bfm-1.1
 
 [provider]
 name = github
 user = olofk
 repo = wb_intercon
-version = v1.0
+version = v1.1

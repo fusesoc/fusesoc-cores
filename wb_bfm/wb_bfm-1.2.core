@@ -44,4 +44,4 @@ depend = >=vlog_tb_utils-1.1
 name = github
 user = olofk
 repo = wb_bfm
-version = v1.1
+version = v1.2

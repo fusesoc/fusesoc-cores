@@ -1,0 +1,18 @@
+CAPI=1
+[main]
+
+name = ::ddr2_1024:5.83
+depend = >=elf-loader-1.0
+
+[fileset mem_model]
+files =
+ ddr2_parameters.vh[is_include_file]
+ ddr2.v
+ ddr2_wrapper.v
+file_type = verilogSource
+usage = sim
+
+[provider]
+name = url
+filetype = zip
+url = https://www.micron.com/~/media/documents/products/sim-model/dram/dram/39571024mb_ddr2.zip

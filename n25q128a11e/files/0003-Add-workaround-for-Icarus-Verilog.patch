@@ -1,0 +1,26 @@
+From ff38378c36c363c164ba54b1b39f22e882a921c4 Mon Sep 17 00:00:00 2001
+From: Olof Kindgren <olof.kindgren@gmail.com>
+Date: Mon, 28 Nov 2016 12:15:42 +0100
+Subject: [PATCH 3/3] Add workaround for Icarus Verilog
+
+---
+ N25Q128A11E_VG12/code/N25Qxxx.v | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/N25Q128A11E_VG12/code/N25Qxxx.v b/N25Q128A11E_VG12/code/N25Qxxx.v
+index 75aac3b..c88c2c9 100644
+--- a/N25Q128A11E_VG12/code/N25Qxxx.v
++++ b/N25Q128A11E_VG12/code/N25Qxxx.v
+@@ -2022,7 +2022,9 @@ always @(sendToBus) begin
+ 
+ 
+       dtr_dout_started = 1'b1;
++`ifndef __ICARUS__
+       force DQ1 = 1'bX;
++`endif
+       if(N25Qxxx.DoubleTransferRate == 1) force DQ0 = 1'bX;
+       if((cmdRecName == "Read Fast") || 
+         (cmdRecName == "Dual Command Fast Read") || 
+-- 
+2.7.3
+

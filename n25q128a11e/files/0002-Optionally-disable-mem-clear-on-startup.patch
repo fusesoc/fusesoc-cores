@@ -1,0 +1,50 @@
+From 8aba8dd386130ea93de5ab2e382cc83d79b5bcb8 Mon Sep 17 00:00:00 2001
+From: Olof Kindgren <olof.kindgren@gmail.com>
+Date: Mon, 28 Nov 2016 12:15:17 +0100
+Subject: [PATCH 2/3] Optionally disable mem clear on startup
+
+---
+ N25Q128A11E_VG12/code/N25Qxxx.v | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/N25Q128A11E_VG12/code/N25Qxxx.v b/N25Q128A11E_VG12/code/N25Qxxx.v
+index 062ba4d..75aac3b 100644
+--- a/N25Q128A11E_VG12/code/N25Qxxx.v
++++ b/N25Q128A11E_VG12/code/N25Qxxx.v
+@@ -133,6 +133,7 @@ parameter [2048*8:1] memory_file = `FILENAME_mem;
+ // parameter [2048*8:1] fdp_file = "sfdp.vmf";
+ parameter [2048*8:1] fdp_file = `FILENAME_sfdp;
+ 
++parameter no_clear = 0; //Set param to disable slow memory clear on startup
+ 
+ reg PollingAccessOn = 0;
+ reg ReadAccessOn = 0;
+@@ -346,7 +347,7 @@ assign W_int = Vpp_W_DQ2;
+ // Modules instantiations
+ //---------------------------
+ 
+-Memory          mem (memory_file);
++Memory #(.no_clear(no_clear)) mem (memory_file);
+ 
+ UtilFunctions   f ();
+ 
+@@ -3703,6 +3704,7 @@ module Memory(mem_file);
+     `include "include/DevParam.h"
+ 
+ 
++    parameter no_clear = 0;
+     input [2048*8:1] mem_file;
+ 
+     //-----------------------------
+@@ -3735,7 +3737,7 @@ module Memory(mem_file);
+ 
+     initial begin 
+ 
+-        for (i=0; i<=memDim-1; i=i+1) 
++        for (i=0; i<=(no_clear ? 0 : memDim-1); i=i+1) 
+             memory[i] = data_NP;
+         #1;
+         
+-- 
+2.7.3
+

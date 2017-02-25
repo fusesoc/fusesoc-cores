@@ -1,0 +1,57 @@
+CAPI=1
+[main]
+name = ::wb_intercon:1.2.1
+description = Wishbone Bus Interconnect utilities
+depend =
+ >=verilog-arbiter-0-r1
+ cdc_utils
+ wb_common
+simulators = icarus modelsim xsim
+
+[fileset rtl_files]
+files =
+ rtl/verilog/wb_cdc.v
+ rtl/verilog/wb_arbiter.v
+ rtl/verilog/wb_data_resize.v
+ rtl/verilog/wb_upsizer.v
+ rtl/verilog/wb_mux.v
+file_type = verilogSource
+
+[fileset tb]
+files =
+ bench/wb_cdc_tb.v
+ bench/wb_mux_tb.v
+ bench/wb_arbiter_tb.v
+ bench/wb_upsizer_tb.v
+ bench/wb_intercon_tb.v
+file_type = verilogSource
+scope = private
+usage = sim
+
+[fileset constraints]
+files = data/wb_intercon.sdc[file_type=SDC]
+usage = quartus
+
+[simulator]
+toplevel = wb_intercon_tb
+
+[parameter transactions]
+datatype    = int
+description = Number of wishbone transactions to run in test bench
+paramtype   = plusarg
+scope       = private
+
+[icarus]
+depend = >=vlog_tb_utils-1.1 >=wb_bfm-1.1
+
+[modelsim]
+depend = >=vlog_tb_utils-1.1 >=wb_bfm-1.1
+
+[xsim]
+depend = >=vlog_tb_utils-1.1 >=wb_bfm-1.1
+
+[provider]
+name = github
+user = olofk
+repo = wb_intercon
+version = v1.2.1

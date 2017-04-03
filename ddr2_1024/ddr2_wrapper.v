@@ -35,6 +35,7 @@ module ddr2_1024_wrapper
       .rdqs_n  (),
       .odt     (1'b0));
 
+`ifndef DDR2_1024_DISABLE_VPI
    ////////////////////////////////////////////////////////////////////////
    //
    // ELF program loading
@@ -72,4 +73,5 @@ module ddr2_1024_wrapper
       end else
 	$display("No ELF file specified");
    end
+`endif
 endmodule

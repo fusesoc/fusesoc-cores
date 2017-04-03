@@ -1,0 +1,60 @@
+CAPI=1
+[main]
+name = fifo-1.2
+description = Generic FIFO
+simulators = icarus isim modelsim
+depend = >=vlog_tb_utils-1.1
+
+[fileset rtl]
+files =
+ rtl/verilog/simple_dpram_sclk.v
+ rtl/verilog/fifo.v
+ rtl/verilog/fifo_fwft_adapter.v
+ rtl/verilog/fifo_fwft.v
+ rtl/verilog/dual_clock_fifo.v
+file_type = verilogSource
+
+[fileset bfm]
+files =
+ bench/fifo_reader.v
+ bench/fifo_writer.v
+file_type = verilogSource
+usage = sim
+
+[fileset tb]
+files =
+ bench/fifo_tb.v
+file_type = verilogSource
+scope = private
+usage = sim
+
+[fileset constraints]
+files = data/fifo.sdc[file_type=SDC]
+usage = quartus
+
+[parameter read_rate]
+datatype    = str
+description = FIFO read rate
+paramtype   = plusarg
+scope       = private
+
+[parameter write_rate]
+datatype    = str
+description = FIFO write rate
+paramtype   = plusarg
+scope       = private
+
+[parameter depth_width]
+datatype    = int
+description = 2**(FIFO depth)
+paramtype   = vlogparam
+scope       = private
+
+[simulator]
+toplevel = fifo_tb
+
+[provider]
+name = github
+user = olofk
+repo = fifo
+version = v1.2

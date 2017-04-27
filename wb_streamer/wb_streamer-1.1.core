@@ -1,0 +1,58 @@
+CAPI=1
+[main]
+name = ::wb_streamer:1.1
+description = Wishbone read/write AXI streamer core
+depend = >=fifo-1.0 >=stream_utils-1.1
+simulators = icarus modelsim
+
+[fileset rtl_files]
+files =
+ rtl/verilog/wb_stream_reader_cfg.v
+ rtl/verilog/wb_stream_reader_ctrl.v
+ rtl/verilog/wb_stream_writer_fifo.v
+ rtl/verilog/wb_stream_reader.v
+ rtl/verilog/wb_stream_writer_cfg.v
+ rtl/verilog/wb_stream_writer_ctrl.v
+ rtl/verilog/wb_stream_writer.v
+file_type = verilogSource
+usage = sim synth
+
+[fileset tb]
+files =
+ bench/wb_reader.v
+ bench/wb_stream_reader_tb.v
+ bench/wb_stream_writer_tb.v
+file_type = verilogSource
+scope = private
+usage = sim
+
+[parameter transactions]
+datatype    = int
+description = Number of test bench transactions
+paramtype   = plusarg
+scope       = private
+
+[parameter verbose]
+datatype    = bool
+description = Enable debug printouts in test bench
+paramtype   = plusarg
+scope       = private
+
+[simulator]
+toplevel = wb_stream_writer_tb
+
+[icarus]
+depend = >=vlog_tb_utils-1.0 >=wb_bfm-1.0
+
+[isim]
+depend = >=vlog_tb_utils-1.0 >=wb_bfm-1.0
+isim_options = -d BROKEN_CLOG2
+
+[modelsim]
+depend = >=vlog_tb_utils-1.0 >=wb_bfm-1.0
+
+[provider]
+name = github
+user = olofk
+repo = wb_streamer
+version = v1.1

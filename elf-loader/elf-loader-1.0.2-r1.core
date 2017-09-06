@@ -1,0 +1,59 @@
+CAPI=2:
+
+name : ::elf-loader:1.0.2-r1
+description : Generic ELF loader
+
+filesets:
+  src:
+    files:
+      - elf-loader.c
+      - elf-loader.h:
+          is_include_file: true
+    file_type: cSource
+  vpi:
+    files:
+      - vpi_wrapper.c
+
+vpi:
+  elf-loader:
+    filesets:
+      - src
+      - vpi
+    libs:
+      - elf
+    #include: . ???
+
+#[verilator]
+#src_files     = elf-loader.c
+#include_files = elf-loader.h
+#libs          = -lelf
+#
+
+targets:
+  default:
+    filesets: ["tool_verilator? ( src )"]
+    parameters:
+      - elf-load
+    tools:
+      verilator:
+        libs : [-lelf]
+    vpi :
+      #- "!tool_verilator ? (bfm_files)"
+      - "!tool_xsim ? (!tool_isim ? (elf-loader))"
+#      - "!isim? (!xsim? (elf-loader))"
+
+parameters :
+  elf-load:
+    datatype    : file
+    description : ELF file to preload to memory
+    paramtype   : plusarg
+    scope       : public
+
+scripts :
+  pre_build : check_libelf.sh
+
+provider :
+  name    : github
+  user    : fusesoc
+  repo    : elf-loader
+  version : v1.0.2

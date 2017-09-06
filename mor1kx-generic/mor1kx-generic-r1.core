@@ -1,0 +1,67 @@
+CAPI=2:
+name : "::mor1kx-generic:0-r1"
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/orpsoc_top.v
+      - rtl/verilog/wb_intercon.v
+      - rtl/verilog/wb_intercon.vh:
+          is_include_file: true
+    file_type: verilogSource
+    depend:
+      - adv_debug_sys
+      - ">=jtag_tap-1.13"
+      - mor1kx
+      - ">=uart16550-1.5.4"
+      - ">=wb_intercon-1.0"
+      - wb_ram-1.0
+  tb:
+    files:
+      - bench/verilog/include/test-defines.v:
+          is_include_file: true
+      - bench/verilog/orpsoc_tb.v
+    file_type : verilogSource
+    depend:
+      - elf-loader
+      - ">=jtag_vpi-r2"
+      - vlog_tb_utils-1.0
+      - tool_verilator? (verilator_tb_utils)
+  verilator_tb:
+    files:
+      - bench/verilator/tb.cpp: {file_type : cppSource}
+    depend:
+      - elf-loader
+      - verilator_tb_utils
+      
+targets:
+  default:
+    filesets: [rtl]
+      
+  tb:
+    default_tool : icarus
+    filesets:
+      - rtl
+      - "!tool_verilator? (tb)"
+      - tool_verilator? (verilator_tb)
+    tools:
+      icarus:
+        iverilog_options: [-DSIM]
+      verilator:
+        mode : cc
+        verilator_options: [-Wno-fatal, --trace]
+    toplevel: ["!tool_verilator? (orpsoc_tb)", "tool_verilator? (orpsoc_top)"]
+  lint:
+    default_tool : verilator
+    filesets:
+      - rtl
+    tools:
+      verilator:
+        mode: lint-only
+    toplevel : [orpsoc_top]
+parameters:
+  clear_ram:
+    datatype    : bool
+    description : Preset RAM to a known value (0)
+    paramtype   : plusarg
+    scope       : private

@@ -1,0 +1,8 @@
+CAPI=1
+[main]
+description = Open Multi-Processor Interrupt Controller core
+
+[fileset rtl_files]
+files =
+ rtl/verilog/ipi.v
+file_type = verilogSource

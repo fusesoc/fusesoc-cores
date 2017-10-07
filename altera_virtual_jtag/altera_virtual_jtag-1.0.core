@@ -1,0 +1,8 @@
+CAPI=1
+[main]
+description = Advanced Debug System wrapper for altera virtual jtag
+
+[fileset rtl_files]
+files =
+ altera_virtual_jtag.v
+file_type = verilogSource

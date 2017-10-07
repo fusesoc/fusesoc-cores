@@ -1,0 +1,8 @@
+CAPI=1
+[main]
+description = Simple 8-bit gpio core
+
+[fileset rtl_files]
+files =
+ gpio.v
+file_type = verilogSource

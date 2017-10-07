@@ -1,0 +1,46 @@
+CAPI=1
+[main]
+description = "OpenCores I2C Controller core (with slave additions)"
+patches = files/0001-add_vlog_tb_utils.patch
+
+simulators = icarus isim modelsim xsim
+
+[fileset rtl_files]
+files =
+ rtl/verilog/i2c_master_bit_ctrl.v
+ rtl/verilog/i2c_master_byte_ctrl.v
+ rtl/verilog/i2c_master_defines.v[is_include_file]
+ rtl/verilog/i2c_master_top.v
+file_type = verilogSource
+scope = public
+usage = sim synth
+
+[fileset tb_files]
+files =
+ bench/verilog/wb_master_model.v
+ bench/verilog/tst_bench_top.v
+ bench/verilog/i2c_slave_model.v
+file_type = verilogSource
+usage = sim
+
+[simulator]
+toplevel = tst_bench_top
+
+[provider]
+name = github
+user = olofk
+repo = i2c
+version = v1.14
+
+[icarus]
+depend = vlog_tb_utils-1.0 wiredelay
+
+[isim]
+depend = vlog_tb_utils-1.0 wiredelay
+
+[modelsim]
+depend = vlog_tb_utils-1.0 wiredelay
+vlog_options = -timescale 1ns/10ps
+
+[xsim]
+depend = vlog_tb_utils-1.0 wiredelay

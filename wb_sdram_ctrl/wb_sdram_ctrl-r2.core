@@ -1,0 +1,61 @@
+CAPI=1
+[main]
+description = "SDRAM controller with multiple wishbone slave ports"
+simulators = icarus modelsim xsim
+
+[fileset rtl_files]
+files =
+ rtl/verilog/wb_port_arbiter.v
+ rtl/verilog/bufram.v
+ rtl/verilog/dpram_altera.v
+ rtl/verilog/dpram_generic.v
+ rtl/verilog/dual_clock_fifo.v
+ rtl/verilog/sdram_ctrl.v
+ rtl/verilog/wb_port.v
+ rtl/verilog/wb_sdram_ctrl.v
+file_type = verilogSource
+usage = sim synth
+
+[fileset tb]
+files = bench/wb_sdram_ctrl_tb.v
+file_type = verilogSource
+scope = private
+usage = sim
+
+[parameter transactions]
+datatype    = int
+description = Number of wishbone transactions to run in test bench
+paramtype   = plusarg
+scope       = private
+
+[parameter subtransactions]
+datatype    = int
+description = Number of wishbone transactions to run in test bench
+paramtype   = plusarg
+scope       = private
+
+[parameter seed]
+datatype    = int
+description = Initial random seed
+paramtype   = plusarg
+scope       = private
+
+[simulator]
+toplevel = wb_sdram_ctrl_tb
+
+[icarus]
+depend = mt48lc16m16a2 vlog_tb_utils-1.0 wb_bfm-1.0
+
+[modelsim]
+vlog_options = -timescale=1ns/1ps
+vsim_options = -t 1ps
+depend = mt48lc16m16a2 vlog_tb_utils-1.0 wb_bfm-1.0
+
+[xsim]
+depend = mt48lc16m16a2 vlog_tb_utils-1.0 wb_bfm-1.0
+
+[provider]
+name = github
+user = stffrdhrn
+repo = wb_sdram_ctrl
+version = ccc032255dfdda6282b24eb8a6814fe9860bec0d

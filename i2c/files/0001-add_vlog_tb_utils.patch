@@ -1,0 +1,12 @@
+diff --git a/bench/verilog/tst_bench_top.v b/bench/verilog/tst_bench_top.v
+index 36454ff..5604d5f 100644
+--- a/bench/verilog/tst_bench_top.v
++++ b/bench/verilog/tst_bench_top.v
+@@ -67,6 +67,7 @@
+ //
+ 
+ module tst_bench_top();
++   vlog_tb_utils vtu();
+ 
+ 	//
+ 	// wires && regs

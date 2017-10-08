@@ -4,7 +4,7 @@ description = Open Multi-Processor Interrupt Controller core
 
 [fileset rtl_files]
 files =
- rtl/verilog/timer.v
+ timer.v
 file_type = verilogSource
 
 [provider]

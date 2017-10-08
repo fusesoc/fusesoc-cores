@@ -28,6 +28,7 @@ files =
  Hardware/jtag/tap/rtl/verilog/tap_top.v
  Hardware/adv_dbg_if/bench/jtag_serial_port/adv_dbg_jsp_tb.v
 file_type=verilogSource
+scope=private
 usage = sim
 
 [simulator]

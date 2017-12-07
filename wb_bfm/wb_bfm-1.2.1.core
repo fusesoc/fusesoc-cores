@@ -45,6 +45,9 @@ isim_options = -d BROKEN_CLOG2
 [modelsim]
 depend = >=vlog_tb_utils-1.1
 
+[xsim]
+depend = >=vlog_tb_utils-1.1
+
 [provider]
 name = github
 user = olofk

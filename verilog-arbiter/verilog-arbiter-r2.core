@@ -1,0 +1,18 @@
+CAPI=2:
+name : ::verilog-arbiter:0-r2
+description : Verilog arbiter
+
+filesets:
+  rtl:
+    files: [src/arbiter.v]
+    file_type : verilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+provider:
+  name    : github
+  user    : bmartini
+  repo    : verilog-arbiter
+  version : b79f89e17f0be3b70a513c1a0b456f734a79273a

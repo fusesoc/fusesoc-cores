@@ -1,0 +1,43 @@
+CAPI=2:
+
+name : ::adv_debug_sys:3.1.0-r1
+
+filesets:
+  adv_dbg_if:
+    files:
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_defines.v: {is_include_file : true}
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_wb_defines.v: {is_include_file : true}
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_wb_biu.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_or1k_status_reg.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_jsp_biu.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_or1k_module.v
+      - Hardware/adv_dbg_if/rtl/verilog/syncflop.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_crc32.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_jsp_module.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_top.v
+      - Hardware/adv_dbg_if/rtl/verilog/bytefifo.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_or1k_biu.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_or1k_defines.v
+      - Hardware/adv_dbg_if/rtl/verilog/syncreg.v
+      - Hardware/adv_dbg_if/rtl/verilog/adbg_wb_module.v
+    file_type : verilogSource
+
+  jsp_tb:
+    files:
+      - Hardware/jtag/tap/rtl/verilog/tap_defines.v: {is_include_file : true}
+      - Hardware/jtag/tap/rtl/verilog/tap_top.v
+      - Hardware/adv_dbg_if/bench/jtag_serial_port/adv_dbg_jsp_tb.v
+    file_type : verilogSource
+
+targets:
+  default:
+    filesets : [adv_dbg_if]
+  jsp_tb:
+    default_tool : icarus
+    filesets : [adv_dbg_if, jsp_tb]
+    toplevel : [adv_debug_tb]
+provider:
+  name    : github
+  user    : olofk
+  repo    : adv_debug_sys
+  version : ADS_RELEASE_3_1_0

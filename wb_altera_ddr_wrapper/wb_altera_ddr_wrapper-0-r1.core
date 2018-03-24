@@ -1,0 +1,87 @@
+CAPI=2:
+name : ::wb_altera_ddr_wrapper:0-r1
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/wb_port_arbiter.v
+      - rtl/verilog/bufram.v
+      - rtl/verilog/dpram_altera.v
+      - rtl/verilog/wb_ddr_ctrl.v
+      - rtl/verilog/wb_port.v
+      - rtl/verilog/ddr_ctrl_wrapper.v
+    file_type : verilogSource
+    depend : [fifo]
+
+  tb:
+    files:
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_define.iv : {is_include_file : true}
+      - bench/ddr_ctrl_ip/alt_mem_phy_defines.v : {is_include_file : true}
+      - bench/ddr_ctrl_ip/ddr_ctrl_ip_alt_mem_ddrx_controller_top.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_controller.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_addr_cmd.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_addr_cmd_wrap.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_controller_st_top.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ddr2_odt_gen.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ddr3_odt_gen.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_lpddr2_addr_cmd.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_odt_gen.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_rdwr_data_tmg.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_arbiter.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_burst_gen.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_cmd_gen.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_csr.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_buffer.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_buffer_manager.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_burst_tracking.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_dataid_manager.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_fifo.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_list.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_rdata_path.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_wdata_path.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_define.iv
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ecc_decoder.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ecc_decoder_32_syn.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ecc_decoder_64_syn.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ecc_encoder.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ecc_encoder_32_syn.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ecc_encoder_64_syn.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_ecc_encoder_decoder_wrapper.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_input_if.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_mm_st_converter.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_rank_timer.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_sideband.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_tbp.v
+      - bench/ddr_ctrl_ip/alt_mem_ddrx_timing_param.v
+      - bench/ddr_ctrl_ip/ddr_ctrl_ip_controller_phy.v
+      - bench/ddr_ctrl_ip/ddr_ctrl_ip_phy_alt_mem_phy.v
+      - bench/ddr_ctrl_ip/ddr_ctrl_ip_phy_alt_mem_phy_pll.v
+      - bench/ddr_ctrl_ip/altera_primitives.v
+      - bench/ddr_ctrl_ip/cycloneiii_atoms.v
+      - bench/ddr_ctrl_ip/sgate.v
+      - bench/ddr_ctrl_ip/altera_mf.v
+      - bench/ddr_ctrl_ip/220model.v
+      - bench/ddr_ctrl_ip/ddr_ctrl_ip_phy_alt_mem_phy_seq_wrapper.vo
+      - bench/ddr_ctrl_ip/ddr_ctrl_ip_sim.v
+      - bench/ddr_ctrl_ip/ddr_ctrl_ip_phy.v
+      - bench/wb_ddr_ctrl_tb.v
+    file_type : verilogSource
+    depend: [mt46v16m16p, wb_bfm]
+
+targets:
+  default:
+    filesets: [rtl]
+  sim:
+    default_tool : modelsim
+    filesets: [rtl,tb]
+    tools:
+      modelsim:
+        vlog_options : [+define+sg5B, +define+x16, +define+FULL_MEM]
+        vsim_options : [-t, 1ps, -suppress, 3009]
+    toplevel: [wb_ddr_ctrl_tb]
+
+provider:
+  name    : github
+  user    : fusesoc
+  repo    : wb_altera_ddr_wrapper
+  version : e01aa362ebab53dcc6e87e2859afb302b03536f9

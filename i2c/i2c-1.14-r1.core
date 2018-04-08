@@ -1,0 +1,35 @@
+CAPI=2:
+name : ::i2c:1.14-r1
+filesets:
+  rtl_files:
+    files:
+      - rtl/verilog/i2c_master_bit_ctrl.v
+      - rtl/verilog/i2c_master_byte_ctrl.v
+      - rtl/verilog/i2c_master_defines.v: {is_include_file : true}
+      - rtl/verilog/i2c_master_top.v
+    file_type : verilogSource
+
+  tb_files:
+    depend:
+      - ">=vlog_tb_utils-1.0"
+      - wiredelay
+    files:
+      - bench/verilog/wb_master_model.v
+      - bench/verilog/tst_bench_top.v
+      - bench/verilog/i2c_slave_model.v
+    file_type : verilogSource
+
+targets:
+  default:
+    filesets : [rtl_files]
+  sim:
+    default_tool : icarus
+    filesets : [rtl_files, tb_files]
+    toplevel : [tst_bench_top]
+
+provider:
+  name : github
+  user : olofk
+  repo : i2c
+  version : v1.14
+  patches : [files/0001-add_vlog_tb_utils.patch]

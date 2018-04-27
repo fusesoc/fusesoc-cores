@@ -13,7 +13,7 @@ depend =
  ::uart16550:1.5.5
  ::wb_intercon:1.2
  ::wb_ram:1.1
- ::wb_sdram_ctrl:0-r2
+ >=::wb_sdram_ctrl:0-r2
  ::ompic:1.0
  ::timer:1.0
 

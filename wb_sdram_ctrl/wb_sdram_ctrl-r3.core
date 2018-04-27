@@ -1,0 +1,56 @@
+CAPI=2:
+name : ::wb_sdram_ctrl:0-r3
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/wb_port_arbiter.v
+      - rtl/verilog/bufram.v
+      - rtl/verilog/dpram_altera.v
+      - rtl/verilog/dpram_generic.v
+      - rtl/verilog/dual_clock_fifo.v
+      - rtl/verilog/sdram_ctrl.v
+      - rtl/verilog/wb_port.v
+      - rtl/verilog/wb_sdram_ctrl.v
+    file_type : verilogSource
+
+  tb:
+    files : [bench/wb_sdram_ctrl_tb.v]
+    file_type : verilogSource
+    depend:
+      [mt48lc16m16a2, ">=vlog_tb_utils-1.0", ">=wb_bfm-1.0"]
+
+parameters:
+  transactions:
+    datatype    : int
+    description : Number of wishbone transactions to run in test bench
+    paramtype   : plusarg
+
+  subtransactions:
+    datatype    : int
+    description : Number of wishbone transactions to run in test bench
+    paramtype   : plusarg
+
+  seed:
+    datatype    : int
+    description : Initial random seed
+    paramtype   : plusarg
+    scope       : private
+
+targets:
+  default:
+    filesets: [rtl]
+  sim:
+    default_tool : icarus
+    filesets   : [rtl, tb]
+    parameters : [transactions, subtransactions, seed]
+    tools:
+      modelsim:
+        vlog_options : [-timescale=1ns/1ps]
+        vsim_options : [-t, 1ps]
+    toplevel   : [wb_sdram_ctrl_tb]
+
+provider:
+  name    : github
+  user    : stffrdhrn
+  repo    : wb_sdram_ctrl
+  version : ccc032255dfdda6282b24eb8a6814fe9860bec0d

@@ -1,0 +1,32 @@
+From 7d3c05a954f8ee0d43da634e853c29de88bf6545 Mon Sep 17 00:00:00 2001
+From: Olof Kindgren <olof.kindgren@gmail.com>
+Date: Fri, 17 Aug 2018 13:17:24 +0200
+Subject: [PATCH] Support memory initialization from plusarg
+
+---
+ AT25SF081.v | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/AT25SF081.v b/AT25SF081.v
+index 4eb520c..f0684d0 100644
+--- a/AT25SF081.v
++++ b/AT25SF081.v
+@@ -435,12 +435,15 @@ module AT25SF081( SCLK,
+     /*----------------------------------------------------------------------*/
+     /* initial flash data    						    */
+     /*----------------------------------------------------------------------*/
++    reg [1023:0] spi_flash_file;
+     initial 
+     begin : memory_initialize
+ 	for ( i = 0; i <=  TOP_Add; i = i + 1 )
+ 	    ARRAY[i] = 8'hff; 
+ 	if ( CELL_DATA != "empty" )
+ 	    $readmemh("CELL_DATA",ARRAY) ;
++	else if( $value$plusargs("spi_flash_file=%s", spi_flash_file) )
++	    $readmemh(spi_flash_file, ARRAY);
+     
+ 	for( i = 0; i <=  Secur_TOP_Add; i = i + 1 ) begin
+ 	    Secur_ARRAY[i]=8'hff;
+-- 
+2.16.4
+

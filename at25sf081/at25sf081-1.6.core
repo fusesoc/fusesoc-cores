@@ -1,0 +1,26 @@
+CAPI=2:
+
+name : ::at25sf081:1.6
+
+filesets:
+  model:
+    files:
+      - AT25SF081.v : {file_type : verilogSource}
+
+targets:
+  default:
+    filesets : [model]
+    parameters : [spi_flash_file]
+
+parameters:
+  spi_flash_file:
+    datatype    : file
+    description : Initial SPI Flash contents (in Verilog hex format)
+    paramtype   : plusarg
+
+provider:
+  name     : url
+  url      : https://www.adestotech.com/sites/default/files/tools_download/Verilog_AT25SF081.zip
+  filetype : zip
+  user-agent: FuseSoC
+  patches  : [files/0001-Support-memory-initialization-from-plusarg.patch]

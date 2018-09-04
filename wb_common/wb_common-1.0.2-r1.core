@@ -1,0 +1,23 @@
+CAPI=2:
+
+name : ::wb_common:1.0.2
+
+filesets:
+  common:
+    files:
+      - wb_common_params.v : {is_include_file : true}
+      - wb_common.v : {is_include_file : true}
+    file_type : verilogSource
+
+targets:
+  default:
+    filesets : [common]
+    tools:
+      isim:
+        fuse_options: [-d, BROKEN_CLOG2]
+
+provider:
+  name    : github
+  user    : fusesoc
+  repo    : wb_common
+  version : v1.0.2

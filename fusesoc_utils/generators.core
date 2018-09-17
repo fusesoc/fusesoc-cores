@@ -1,0 +1,19 @@
+CAPI=2:
+
+name : fusesoc:utils:generators:0.1
+
+generators:
+  custom:
+    interpreter: python
+    command: custom.py
+
+  gitversion:
+    interpreter: python
+    command: gitversion.py
+
+provider:
+  name : github
+  user : fusesoc
+  repo : fusesoc-generators
+  version : v0.1
+  

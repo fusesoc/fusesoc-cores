@@ -1,0 +1,80 @@
+CAPI=2:
+name : ::wb_sdram_ctrl:0-r4
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/wb_port_arbiter.v
+      - rtl/verilog/bufram.v
+      - rtl/verilog/dpram_altera.v
+      - rtl/verilog/dpram_ecp5.v
+      - rtl/verilog/dpram_generic.v
+      - rtl/verilog/dual_clock_fifo.v
+      - rtl/verilog/sdram_ctrl.v
+      - rtl/verilog/wb_port.v
+      - rtl/verilog/wb_sdram_ctrl.v
+    file_type : verilogSource
+
+  tb:
+    files : [bench/wb_sdram_ctrl_tb.v]
+    file_type : verilogSource
+    depend:
+      [mt48lc16m16a2, ">=vlog_tb_utils-1.0", ">=wb_bfm-1.0"]
+
+parameters:
+  transactions:
+    datatype    : int
+    description : Number of wishbone transactions to run in test bench
+    paramtype   : plusarg
+
+  subtransactions:
+    datatype    : int
+    description : Number of wishbone transactions to run in test bench
+    paramtype   : plusarg
+
+  seed:
+    datatype    : int
+    description : Initial random seed
+    paramtype   : plusarg
+
+  technology:
+    datatype    : str
+    description : Select DPRAM implementation. Legal values are ALTERA, ECP5 or GENERIC (default)
+    paramtype   : vlogparam
+
+  USE_LATTICE_GSR_PUR:
+    datatype: bool
+    paramtype : vlogdefine
+targets:
+  default:
+    filesets: [rtl]
+  sim: &sim
+    default_tool : icarus
+    filesets   : [rtl, tb]
+    parameters : [transactions, subtransactions, seed, technology]
+    tools:
+      modelsim:
+        vlog_options : [-timescale=1ns/1ps]
+        vsim_options : [-t, 1ps]
+    toplevel   : [wb_sdram_ctrl_tb]
+  sim_altsyncram:
+    <<: *sim
+    parameters : [transactions, subtransactions, seed, technology=ALTERA]
+    tools:
+      icarus:
+        iverilog_options : [-l, $(QUARTUS_ROOTDIR)/eda/sim_lib/altera_mf.v]
+      modelsim:
+        vlog_options : [-timescale=1ns/1ps]
+        vsim_options : [-t, 1ps, -L, altera_mf_ver]
+  sim_ecp5:
+    <<: *sim
+    parameters : [transactions, subtransactions, seed, technology=ECP5, USE_LATTICE_GSR_PUR=true]
+    tools:
+      icarus:
+        iverilog_options : [-y, $(FOUNDRY)/verilog/data/ecp5u]
+
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : wb_sdram_ctrl
+  version : 26eb18d5e652333650cfe1d8fee469c8695f703a

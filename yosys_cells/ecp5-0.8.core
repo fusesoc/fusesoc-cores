@@ -1,0 +1,16 @@
+CAPI=2:
+
+name : yosys:techlibs:ecp5:0.8
+
+filesets:
+  ecp5_cells:
+    files: [cells_sim.v : {file_type : verilogSource}]
+
+targets:
+  default:
+    filesets : [ecp5_cells]
+
+provider:
+  name     : url
+  filetype : simple
+  url      : https://raw.githubusercontent.com/YosysHQ/yosys/d29b517fef05973dda3c556a95fbfb478d6e7e50/techlibs/ecp5/cells_sim.v

@@ -1,0 +1,52 @@
+CAPI=2:
+
+name : pulp-platform.org::axi:0.6
+
+filesets:
+  rtl:
+    files:
+      - src/axi_pkg.sv
+      - src/axi_join.sv
+      - src/axi_lite_multicut.sv
+      - src/axi_intf.sv
+      - src/axi_lite_join.sv
+      - src/axi_arbiter.sv
+      - src/axi_delayer.sv
+      - src/axi_lite_cut.sv
+      - src/axi_lite_xbar.sv
+      - src/axi_multicut.sv
+      - src/axi_address_resolver.sv
+      - src/axi_to_axi_lite.sv
+      - src/axi_lite_to_axi.sv
+      - src/axi_cut.sv
+      - src/axi_modify_address.sv
+      - src/axi_id_remap.sv
+    file_type: systemVerilogSource
+    depend : ["pulp-platform.org::common_cells"]
+
+  tb:
+    files:
+      - src/axi_test.sv
+      - test/tb_axi_lite_xbar.sv
+    file_type : systemVerilogSource
+targets:
+  default:
+    filesets : [rtl]
+
+  lint:
+    default_tool : verilator
+    filesets : [rtl]
+    tools:
+      verilator:
+        mode: lint-only
+    toplevel: axi_lite_xbar
+  sim:
+    default_tool : modelsim
+    filesets: [rtl, tb]
+    toplevel : tb_axi_lite_xbar
+
+provider:
+  name    : github
+  user    : pulp-platform
+  repo    : axi
+  version : v0.6.0

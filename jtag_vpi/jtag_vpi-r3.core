@@ -1,0 +1,43 @@
+CAPI=2:
+
+name : ::jtag_vpi:0-r3
+description : TCP/IP controlled VPI JTAG Interface
+
+filesets :
+  common :
+    files : [jtag_common.c, jtag_common.h : {is_include_file : true}]
+    file_type : cSource
+
+  vpi :
+    files :
+      - jtag_vpi.c : {file_type : cSource}
+      - jtag_vpi.v : {file_type : verilogSource}
+
+  verilator :
+    files :
+      - jtagServer.cpp
+      - jtagServer.h : {is_include_file : true}
+    file_type : cppSource
+
+vpi:
+  jtag_vpi: {filesets : [common, vpi]}
+
+targets :
+  default:
+    filesets :
+      - common
+      - "tool_verilator? (verilator)"
+      - "!tool_verilator? (vpi)"
+    parameters: [jtag_vpi_enable]
+
+parameters:
+  jtag_vpi_enable:
+    datatype    : bool
+    description : Enable JTAG debug interface
+    paramtype   : plusarg
+
+provider:
+  name    : github
+  user    : fjullien
+  repo    : jtag_vpi
+  version : 4155b223b2da7a9f835eb07c8adc6715680c3c51

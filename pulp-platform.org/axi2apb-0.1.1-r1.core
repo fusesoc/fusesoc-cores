@@ -1,0 +1,23 @@
+CAPI=2:
+name: pulp-platform.org::axi2apb:0.1.1-r1
+
+dependencies:
+filesets:
+  rtl:
+    files:
+      - src/axi2apb.sv
+      - src/axi2apb_64_32.sv
+      - src/axi2apb_wrap.sv
+    file_type : systemVerilogSource
+    depend:
+      - ">=pulp-platform.org::apb:0.1.0"
+      - ">=pulp-platform.org::axi:0.4.5"
+      - pulp-platform.org::axi_slice
+
+targets : {default : {filesets : [rtl]}}
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : axi2apb
+  version : 6ecb6579d84a1e279205b98598692251722fc9d3

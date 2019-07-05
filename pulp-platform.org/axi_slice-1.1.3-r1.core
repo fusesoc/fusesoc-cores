@@ -1,0 +1,27 @@
+CAPI=2:
+
+name: pulp-platform.org::axi_slice:1.1.3-r1
+
+filesets:
+  rtl:
+    files:
+      - src/axi_single_slice.sv
+      - src/axi_ar_buffer.sv
+      - src/axi_aw_buffer.sv
+      - src/axi_b_buffer.sv
+      - src/axi_r_buffer.sv
+      - src/axi_slice.sv
+      - src/axi_w_buffer.sv
+      - src/axi_slice_wrap.sv
+    file_type : systemVerilogSource
+    depend : [">=pulp-platform.org::common_cells:1.7.4"]
+
+targets:
+  default:
+    filesets : [rtl]
+
+provider:
+  name    : github
+  user    : pulp-platform
+  repo    : axi_slice
+  version : aae8ca49dcfbfa8e44e1938a2e4a768db83006cb

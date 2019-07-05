@@ -1,0 +1,10 @@
+CAPI=2:
+name: pulp-platform.org::apb:0.1.0
+filesets : {rtl : {files : [src/apb_intf.sv : {file_type : systemVerilogSource}]}}
+targets : {default : {filesets : [rtl]}}
+
+provider:
+  name    : github
+  user    : pulp-platform
+  repo    : apb
+  version : v0.1.0

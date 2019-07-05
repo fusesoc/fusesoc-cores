@@ -1,0 +1,21 @@
+CAPI=2:
+
+name : pulp-platform.org::apb_uart_sv:0
+
+filesets:
+  rtl:
+    files:
+      - apb_uart_sv.sv
+      - uart_rx.sv
+      - uart_tx.sv
+      - io_generic_fifo.sv
+      - uart_interrupt.sv
+    file_type : systemVerilogSource
+
+targets: {default : {filesets : [rtl]}}
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : apb_uart_sv
+  version : 5309631455a5f41fed5793231ed11ac66ae31e17

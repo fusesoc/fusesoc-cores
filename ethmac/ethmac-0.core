@@ -1,0 +1,65 @@
+CAPI=2:
+name : ::ethmac:0-r1
+
+filesets:
+   rtl:
+      files:
+      - rtl/verilog/ethmac.v
+
+      - rtl/verilog/eth_clockgen.v
+      - rtl/verilog/eth_cop.v
+      - rtl/verilog/eth_crc.v
+      - rtl/verilog/eth_fifo.v
+      - rtl/verilog/eth_maccontrol.v
+      - rtl/verilog/eth_macstatus.v
+      - rtl/verilog/eth_miim.v
+      - rtl/verilog/eth_outputcontrol.v
+      - rtl/verilog/eth_random.v
+      - rtl/verilog/eth_receivecontrol.v
+      - rtl/verilog/eth_registers.v
+      - rtl/verilog/eth_rxaddrcheck.v
+      - rtl/verilog/eth_rxcounters.v
+      - rtl/verilog/eth_register.v
+      - rtl/verilog/eth_rxethmac.v
+      - rtl/verilog/eth_rxstatem.v
+      - rtl/verilog/eth_spram_256x32.v
+      - rtl/verilog/eth_shiftreg.v
+      - rtl/verilog/eth_transmitcontrol.v
+      - rtl/verilog/eth_txcounters.v
+      - rtl/verilog/eth_txethmac.v
+      - rtl/verilog/eth_txstatem.v
+      - rtl/verilog/eth_wishbone.v
+
+      file_type : verilogSource
+
+   includes:
+     files:
+       - rtl/verilog/ethmac_defines.v : {is_include_file : true}
+       - rtl/verilog/timescale.v : {is_include_file : true}
+     file_type : VerilogSource
+
+targets:
+   default:
+      filesets : [includes, rtl]
+
+   lint:
+      default_tool : verilator
+      filesets : [includes, rtl]
+      tools:
+        verilator :
+           mode : lint-only
+      toplevel : ethmac
+
+   synth:
+      default_tool : vivado
+      filesets : [includes, rtl]
+      tools:
+        vivado:
+          part : xc7a100tcsg324-1
+      toplevel : ethmac
+
+provider:
+  name    : github
+  user    : freecores
+  repo    : ethmac
+  version : dd26899086edf3b797d2775ef9502d204a9a8149

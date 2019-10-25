@@ -1,0 +1,40 @@
+CAPI=2:
+
+name : ::simple_spi:1.6.1
+description : OpenCores SPI Core
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/fifo4.v
+      - rtl/verilog/simple_spi_top.v
+    file_type : verilogSource
+
+  tb:
+    files:
+      - bench/verilog/tst_bench_top.v
+      - bench/verilog/spi_slave_model.v
+      - bench/verilog/wb_master_model.v
+    file_type : verilogSource
+    depend: [vlog_tb_utils]
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool : verilator
+    filesets : [rtl]
+    tools: {verilator : {mode : lint-only}}
+    toplevel : simple_spi
+
+  sim:
+    default_tool: icarus
+    filesets: [rtl,tb]
+    toplevel: tst_bench_top
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : simple_spi
+  version : v1.6.1

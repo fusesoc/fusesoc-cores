@@ -1,0 +1,31 @@
+CAPI=2:
+
+name : ::serving:0
+
+filesets:
+  rtl:
+    files:
+      - serving/serving_arbiter.v
+      - serving/serving_mux.v
+      - serving/serving_ram.v
+      - serving/serving.v
+    file_type : verilogSource
+    depend : [serv]
+
+targets:
+  default:
+    filesets : [rtl]
+
+  lint:
+    default_tool : verilator
+    filesets : [rtl]
+    tools:
+      verilator:
+        mode : lint-only
+    toplevel : serving
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : serv
+  version : 4f855602fac18c21385925c88737493d493dbfb2

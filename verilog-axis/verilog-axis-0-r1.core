@@ -1,6 +1,6 @@
 CAPI=2:
 
-name : ::verilog-axis:0
+name : ::verilog-axis:0-r1
 
 filesets:
   rtl:

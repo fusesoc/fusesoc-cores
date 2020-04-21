@@ -1,0 +1,107 @@
+CAPI=2:
+
+name : ::SD-card-controller:0-r3
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/sd_data_xfer_trig.v
+      - rtl/verilog/sd_crc_16.v
+      - rtl/verilog/generic_fifo_dc_gray.v
+      - rtl/verilog/sd_clock_divider.v
+      - rtl/verilog/sd_cmd_master.v
+      - rtl/verilog/sd_crc_7.v
+      - rtl/verilog/sd_cmd_serial_host.v
+      - rtl/verilog/generic_dpram.v
+      - rtl/verilog/sdc_controller.v
+      - rtl/verilog/monostable_domain_cross.v
+      - rtl/verilog/sd_wb_sel_ctrl.v
+      - rtl/verilog/sd_data_serial_host.v
+      - rtl/verilog/sd_controller_wb.v
+      - rtl/verilog/sd_data_master.v
+      - rtl/verilog/bistable_domain_cross.v
+      - rtl/verilog/sd_fifo_filler.v
+      - rtl/verilog/byte_en_reg.v
+      - rtl/verilog/edge_detect.v
+      - rtl/verilog/sd_defines.h : {is_include_file : true}
+    file_type: verilogSource
+
+  tb:
+    files:
+      - bench/verilog/byte_en_reg_tb.sv
+      - bench/verilog/sd_cmd_serial_host_tb.sv
+      - bench/verilog/sdModel.v
+      - bench/verilog/monostable_domain_cross_tb.sv
+      - bench/verilog/sd_cmd_master_tb.sv
+      - bench/verilog/sd_data_master_tb.sv
+      - bench/verilog/wb_master32.v
+      - bench/verilog/sd_fifo_filler_tb.sv
+      - bench/verilog/bistable_domain_cross_tb.sv
+      - bench/verilog/wb_master_behavioral.v : {file_type : verilogSource}
+      - bench/verilog/sd_controller_wb_tb.sv
+      - bench/verilog/wb_bus_mon.v
+      - bench/verilog/sd_wb_sel_ctrl_tb.sv
+      - bench/verilog/edge_detect_tb.sv
+      - bench/verilog/wb_slave_behavioral.v
+      - bench/verilog/sd_data_xfer_trig_tb.sv
+      - bench/verilog/sd_data_serial_host_tb.sv
+      - bench/verilog/sd_controller_top_tb.sv
+      - bench/verilog/wb_model_defines.h : {is_include_file : true}
+      - sim/rtl_sim/bin/ramdisk2.hex  : {file_type : user, copyto: ramdisk2.hex}
+      - sim/rtl_sim/bin/wb_memory.txt : {file_type : user, copyto : wb_memory.txt}
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets : [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets : [rtl]
+    tools:
+      verilator:
+        mode : lint-only
+    toplevel : sdc_controller
+
+  tb:
+    default_tool: modelsim
+    filesets: [rtl, tb]
+    parameters : [ramdisk, sd_model_log_file, wb_m_mon_log_file, wb_s_mon_log_file, wb_memory_file]
+    toplevel : sd_controller_top_tb
+
+parameters:
+  ramdisk:
+    datatype    : file
+    default     : ramdisk2.hex
+    description : Initial simulated SD card contents (in Verilog hex format)
+    paramtype   : vlogparam
+
+  sd_model_log_file:
+    datatype    : file
+    default     : sd_model.log
+    description : Log file for SD card model
+    paramtype   : vlogparam
+
+  wb_m_mon_log_file:
+    datatype    : file
+    default     : wb_m_mon.log
+    description : Master monitor log file
+    paramtype   : vlogparam
+
+  wb_s_mon_log_file:
+    datatype    : file
+    default     : wb_s_mon.log
+    description : Slave monitor log file
+    paramtype   : vlogparam
+
+  wb_memory_file:
+    datatype    : file
+    default     : wb_memory.txt
+    description : Initial simulated Wishbone memory contents (in Verilog hex format)
+    paramtype   : vlogparam
+
+provider:
+  name    : github
+  user    : mczerski
+  repo    : SD-card-controller
+  version : 2825b78e72abd059b15e60febc76fa3546583475

@@ -1,0 +1,28 @@
+CAPI=2:
+
+name : ::verilog-axis:0-r3
+
+filesets:
+  rtl:
+    files:
+      - rtl/arbiter.v
+      - rtl/priority_encoder.v
+      - rtl/axis_arb_mux.v
+      - rtl/axis_async_fifo.v
+    file_type : verilogSource
+
+targets:
+  default:
+    filesets : [rtl]
+
+generators:
+  axis_arb_mux:
+    interpreter: python3
+    command: rtl/axis_arb_mux_gen.py
+    description : Generate a parametrized AXI Stream arbiter
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : verilog-axis
+  version : d1f724b212d243572cea4cd4dd2ad336ff9d71ef

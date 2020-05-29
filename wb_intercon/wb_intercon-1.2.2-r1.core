@@ -1,0 +1,91 @@
+CAPI=2:
+
+name : ::wb_intercon:1.2.2-r1
+description : Wishbone Bus Interconnect utilities
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/wb_cdc.v
+      - rtl/verilog/wb_arbiter.v
+      - rtl/verilog/wb_data_resize.v
+      - rtl/verilog/wb_mux.v
+    file_type : verilogSource
+    depend:
+      - ">=verilog-arbiter-0-r1"
+      - cdc_utils
+      - wb_common
+
+  tb:
+    files:
+      - bench/wb_cdc_tb.v
+      - bench/wb_mux_tb.v
+      - bench/wb_arbiter_tb.v
+      - bench/wb_intercon_tb.v
+    file_type : verilogSource
+    depend: [">=vlog_tb_utils-1.1", ">=wb_bfm-1.1"]
+
+  constraints:
+    files : [data/wb_intercon.sdc: {file_type : SDC}]
+
+generators:
+  wb_intercon_gen:
+    interpreter: python3
+    command: sw/wb_intercon_gen2.py
+    description : Create a wishbone crossbar interconnect from a memory map
+    usage: |
+      The Wishbone interconnect generator generates a verilog core from a
+      description of master and connected slave ports.
+
+      Parameters:
+        masters (dict): A named list of master ports. Each master has a list of
+                        connected slave ports
+
+                        Example
+
+                        masters:
+                          cpu_ibus:
+                            slaves: [mem, bootrom]
+                          cpu_dbus: [mem, uart, spi1, spi2]
+        slaves (dict): A named list of slave ports. Each slave defines the
+                       and space they occupy in the memory map
+
+                       Example
+
+                       slaves:
+                         bootrom:
+                           offset : 0xf0000000
+                           size   : 512
+                          uart:
+                            offset : 0x90000000
+                            size   : 16
+                          mem:
+                            offset : 0x00000000
+                            size   : 0x100000
+
+targets:
+  default:
+    filesets: [rtl, "tool_quartus? (constraints)"]
+    tools:
+      isim:
+        fuse_options: [-d, BROKEN_CLOG2]
+
+  sim:
+    filesets: [rtl, tb]
+    parameters: [transactions]
+    tools:
+      isim:
+        fuse_options: [-d, BROKEN_CLOG2]
+    toplevel: wb_intercon_tb
+
+parameters:
+  transactions:
+    datatype    : int
+    description : Number of wishbone transactions to run in test bench
+    paramtype   : plusarg
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : wb_intercon
+  version : v1.2.2

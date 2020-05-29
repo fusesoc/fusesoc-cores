@@ -64,7 +64,7 @@ generators:
                        component (default: false)
 
   template:
-    interpreter: python
+    interpreter: python3
     command: template/template_generator.py
     description: Generate a file from a Jinja template
     usage: |

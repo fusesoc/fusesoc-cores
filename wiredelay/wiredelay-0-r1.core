@@ -1,0 +1,11 @@
+CAPI=2:
+
+name : ::wiredelay:0-r1
+description : Wire delay Verilog model
+filesets : {f : {files: [wiredelay.v : {file_type : verilogSource}]}}
+targets: {default: {filesets : [f]}}
+
+provider:
+  name : url
+  url : https://raw.githubusercontent.com/fusesoc/tiny-cores/master/wiredelay/wiredelay.v
+  filetype : simple

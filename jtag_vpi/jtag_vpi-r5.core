@@ -41,4 +41,4 @@ provider:
   name    : github
   user    : fjullien
   repo    : jtag_vpi
-version : 600e65bb85d92d67a932c3b153991a2b74f78a77
+  version : 600e65bb85d92d67a932c3b153991a2b74f78a77

@@ -51,7 +51,7 @@ filesets:
 
 generators:
   axi_intercon_gen:
-    interpreter: python
+    interpreter: python3
     command: scripts/axi_intercon_gen.py
     description: Generate a wrapper around PULP AXI xbar interconnect
     usage: |

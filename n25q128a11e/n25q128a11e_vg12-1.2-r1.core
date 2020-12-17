@@ -1,0 +1,28 @@
+CAPI=2:
+
+name : ::n25q128a11e:1.2-r1
+description : Micron Verilog model, N25Q 128A11E, 1.8V, v1.1
+
+filesets:
+  model:
+    files:
+      - N25Q128A11E_VG12/code/N25Qxxx.v
+      - N25Q128A11E_VG12/include/Decoders.h : {is_include_file : true}
+      - N25Q128A11E_VG12/include/DevParam.h : {is_include_file : true}
+      - N25Q128A11E_VG12/include/PLRSDetectors.h : {is_include_file : true}
+      - N25Q128A11E_VG12/include/TimingData.h : {is_include_file : true}
+      - N25Q128A11E_VG12/include/UserData.h : {is_include_file : true}
+      - N25Q128A11E_VG12/sim/sfdp.vmf : {is_include_file : true}
+    file_type : verilogSource
+
+targets:
+  default: {filesets : [model]}
+
+provider:
+  name : url
+  filetype : tar
+  url : "https://media-www.micron.com/-/media/client/global/documents/products/sim-model/nor-flash/serial/bfm/n25q/n25q128a_micronxip_hold_18v_vg11,-d-,tar.gz?rev=35e5083ffec64d70ba7d88bb47f55f89"
+  patches:
+    - files/0001-Increase-max-length-for-filenames.patch
+    - files/0002-Optionally-disable-mem-clear-on-startup.patch
+    - files/0003-Add-workaround-for-Icarus-Verilog.patch

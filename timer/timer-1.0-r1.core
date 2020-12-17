@@ -1,0 +1,16 @@
+CAPI=2:
+
+name : ::timer:1.0-r1
+description : Simple free-running timer with Wishbone interface
+
+filesets:
+  rtl:
+    files: [timer.v : {file_type : verilogSource}]
+
+targets:
+  default : {filesets : [rtl]}
+
+provider:
+  name : url
+  url  : https://raw.githubusercontent.com/fusesoc/tiny-cores/2353a67ee0e51e3d458eb7bc71a8e1d06438a31c/timer/rtl/verilog/timer.v
+  filetype : simple

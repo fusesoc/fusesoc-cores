@@ -1,0 +1,49 @@
+CAPI=2:
+
+name : ::wb_bfm:1.2.1-r1
+description : Wishbone BFM
+
+filesets:
+  bfm:
+    files:
+      - wb_bfm_master.v
+      - wb_bfm_slave.v
+      - wb_bfm_memory.v
+      - wb_bfm_transactor.v
+    file_type : verilogSource
+    depend : [wb_common]
+
+  tb:
+    files: [bench/wb_bfm_tb.v : {file_type : verilogSource}]
+    depend : [">=::vlog_tb_utils:1.1"]
+
+targets:
+  default:
+    filesets : [bfm]
+
+  sim:
+    default_tool : icarus
+    description : WB BFM testbench
+    filesets : [bfm, tb]
+    parameters : [transactions, subtransactions]
+    tools:
+      isim:
+        isim_options : [-d, BROKEN_CLOG2]
+    toplevel : wb_bfm_tb
+
+parameters:
+  transactions:
+    datatype    : int
+    description : Number of test bench transactions
+    paramtype   : plusarg
+
+  subtransactions:
+    datatype    : int
+    description : Number of test subtransactions to run
+    paramtype   : plusarg
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : wb_bfm
+  version : v1.2.1

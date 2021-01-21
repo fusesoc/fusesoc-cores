@@ -1,0 +1,61 @@
+CAPI=2:
+
+name: ::verilator_tb_utils:1.0
+description: "Verilator test bench utility class"
+
+filesets:
+  verilator_tb:
+    files:
+      - verilator_tb_utils.cpp
+      - verilator_tb_utils.h:   {is_include_file: true}
+      - jtagServer.cpp
+      - jtagServer.h:           {is_include_file: true}
+    file_type: cppSource
+    depend: [elf-loader]
+
+targets:
+  default:
+    filesets: [verilator_tb]
+    parameters: [timeout, elf_load, bin_load, jtag_server, vcd, vcdstart, vcdstop]
+
+parameters:
+  timeout:
+    datatype: int
+    description: Stop the simulator after VAL cycles
+    paramtype: cmdlinearg
+
+  elf_load:
+    datatype: file
+    description: ELF file to preload to memory
+    paramtype: cmdlinearg
+
+  bin_load:
+    datatype: file
+    description: Binary file to preload to memory (created from elf with objcopy)
+    paramtype: cmdlinearg
+
+  jtag_server:
+    datatype: int
+    description: Enable openocd JTAG server and define the TCP PORT to listen on
+    paramtype: cmdlinearg
+
+  vcd:
+    datatype: file
+    description: Enable and save VCD to FILE
+    paramtype: cmdlinearg
+
+  vcdstart:
+    datatype: int
+    description: Delay VCD generation until after VAL cycles
+    paramtype: cmdlinearg
+
+  vcdstop:
+    datatype: int
+    description: Terminate VCD generation at VAL cycles
+    paramtype: cmdlinearg
+
+provider:
+  name : github
+  user : stffrdhrn
+  repo : verilator_tb_utils
+  version : v1.0

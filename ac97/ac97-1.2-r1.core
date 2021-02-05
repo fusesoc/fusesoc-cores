@@ -1,0 +1,56 @@
+CAPI=2:
+description: OpenCores AC97 Controller core
+filesets:
+  rtl_files:
+    file_type: verilogSource
+    files:
+    - rtl/verilog/ac97_defines.v:
+        is_include_file: true
+    - rtl/verilog/ac97_cra.v
+    - rtl/verilog/ac97_dma_if.v
+    - rtl/verilog/ac97_dma_req.v
+    - rtl/verilog/ac97_fifo_ctrl.v
+    - rtl/verilog/ac97_in_fifo.v
+    - rtl/verilog/ac97_int.v
+    - rtl/verilog/ac97_out_fifo.v
+    - rtl/verilog/ac97_prc.v
+    - rtl/verilog/ac97_rf.v
+    - rtl/verilog/ac97_rst.v
+    - rtl/verilog/ac97_sin.v
+    - rtl/verilog/ac97_soc.v
+    - rtl/verilog/ac97_sout.v
+    - rtl/verilog/ac97_top.v
+    - rtl/verilog/ac97_wb_if.v
+  tb_files:
+    file_type: verilogSource
+    files:
+    - bench/verilog/ac97_codec_sin.v
+    - bench/verilog/ac97_codec_sout.v
+    - bench/verilog/ac97_codec_top.v
+    - bench/verilog/test_bench_top.v
+    - bench/verilog/tests.v:
+        is_include_file: true
+    - bench/verilog/wb_mast_model.v
+    - bench/verilog/wb_model_defines.v:
+        is_include_file: true
+name: ::ac97:1.2-r1
+provider:
+  name: github
+  patches: []
+  repo: ac97
+  user: freecores
+  version: a47e1fd5a2c5b9eb962b4790ab31873772b457e5
+targets:
+  default:
+    filesets:
+    - rtl_files
+    - tb_files
+  sim:
+    default_tool: icarus
+    filesets:
+    - rtl_files
+    - tb_files
+    toplevel: test
+  synth:
+    filesets:
+    - rtl_files

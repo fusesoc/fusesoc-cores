@@ -1,0 +1,40 @@
+CAPI=2:
+
+name: ::wb_ram:1.1-r1
+description: Wishbone RAM with selectable backends
+
+filesets:
+  rtl:
+    files: 
+      - rtl/verilog/wb_ram.v
+      - rtl/verilog/wb_ram_generic.v
+    file_type: verilogSource
+    depend: ['>=::wb_common:0']
+
+  tb:
+    files: [bench/wb_ram_tb.v : {file_type : verilogSource}]
+    depend: ['>=::vlog_tb_utils:1.0', '>=::wb_bfm:1.0']
+
+parameters:
+  transactions:
+    datatype: int
+    description: Number of wishbone transactions to run in test bench
+    paramtype: plusarg
+    scope: private
+
+targets:
+  default:
+    filesets: [rtl]
+
+  sim:
+    default_tool: icarus
+    description : WB RAM testbench
+    filesets: [rtl, tb]
+    parameters: [transactions]
+    toplevel: wb_ram_tb
+
+provider:
+  name: github
+  user: fusesoc
+  repo: wb_ram
+  version: v1.1

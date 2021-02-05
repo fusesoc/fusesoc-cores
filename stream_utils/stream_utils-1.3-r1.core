@@ -1,0 +1,80 @@
+CAPI=2:
+
+name: ::stream_utils:1.3-r1
+description : FIFOs and size converters for data streams
+
+filesets:
+  bfm:
+    files: [bench/stream_writer.v, bench/stream_reader.v]
+    file_type: verilogSource
+    depend: ['>=::vlog_tb_utils:1.1']
+
+  constraints:
+    files: [data/stream_utils.sdc : {file_type : SDC}]
+
+  src_files:
+    files:
+    - rtl/verilog/stream_upsizer.v
+    - rtl/verilog/stream_downsizer.v
+    - rtl/verilog/stream_fifo_if.v
+    - rtl/verilog/stream_fifo.v
+    - rtl/verilog/stream_dual_clock_fifo.v
+    - rtl/verilog/stream_mux.v
+    file_type: verilogSource
+    depend: ['>=::fifo:1.2']
+
+  tb_files:
+    files:
+      - bench/stream_upsizer_tb.v
+      - bench/stream_downsizer_tb.v
+      - bench/stream_fifo_tb.v
+      - bench/stream_dual_clock_fifo_tb.v
+    file_type: verilogSource
+    depend: ['>=::vlog_tb_utils:1.1']
+
+parameters:
+  read_rate:
+    datatype: str
+    description: Stream read rate
+    paramtype: plusarg
+    scope: private
+  write_rate:
+    datatype: str
+    description: Stream write rate
+    paramtype: plusarg
+    scope: private
+
+targets:
+  default:
+    filesets:
+      - src_files
+      - "stream_bfm? (bfm)"
+      - "tool_quartus? (constraints)"
+
+  stream_upsizer_tb: &tb
+    default_tool: icarus
+    description : Testbench for stream upsizer
+    filesets: [src_files, bfm, tb_files]
+    parameters: [read_rate, write_rate]
+    toplevel: stream_upsizer_tb
+
+  stream_downsizer_tb:
+    <<: *tb
+    description : Testbench for stream downsizer
+    toplevel: stream_downsizer_tb
+
+  stream_fifo_tb:
+    <<: *tb
+    description : Testbench for stream fifo
+    toplevel: stream_fifo_tb
+
+  stream_dual_clock_fifo_tb:
+    <<: *tb
+    description : Testbench for stream dual clock FIFO
+    toplevel: stream_dual_clock_fifo_tb
+
+provider:
+  name: github
+  user: olofk
+  repo: stream_utils
+  version: v1.3

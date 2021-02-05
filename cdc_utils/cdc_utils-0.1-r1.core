@@ -1,0 +1,22 @@
+CAPI=2:
+name: ::cdc_utils:0.1-r1
+description: Verilog CDC implementations
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/sync2_pgen.v
+      - rtl/verilog/cc561.v
+    file_type: verilogSource
+  sdc:
+    files: [data/cdc_utils.sdc : {file_type : SDC}]
+
+targets:
+  default:
+    filesets: [rtl, "tool_quartus? (sdc)"]
+
+provider:
+  name: github
+  user: fusesoc
+  repo: cdc_utils
+  version: v0.1

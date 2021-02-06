@@ -198,6 +198,18 @@ targets:
       - memsize
     toplevel : servant_tb
 
+  ulx3s_12:
+    default_tool: diamond
+    description : ULX3S 12k version
+    filesets : [mem_files, soc, ulx3s]
+    parameters : [memfile, memsize]
+    tools:
+      diamond:
+        part : LFE5U-12F-6BG381C
+      trellis:
+        nextpnr_options : [--package, CABGA381, --12k]
+    toplevel: servant_ecp5
+
   ulx3s_85:
     default_tool: diamond
     description : ULX3S 85k version

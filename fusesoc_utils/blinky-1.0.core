@@ -463,6 +463,14 @@ targets:
       trellis:
         nextpnr_options : [--package, CABGA381, --85k, --lpf, ulx3s_v20.lpf]
 
+  ulx3s_12:
+    <<: *ulx3s
+    description : Radiona ULX3S board with 12k FPGA
+    tools:
+      diamond: {part: LFE5U-12F-6BG381C}
+      trellis:
+        nextpnr_options : [--package, CABGA381, --12k, --lpf, ulx3s_v20.lpf]
+
   upduino2:
     default_tool : icestorm
     filesets : [rtl, proginfo, upduino2]

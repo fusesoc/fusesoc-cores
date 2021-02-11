@@ -1,0 +1,16 @@
+CAPI=2:
+name: ::altera_virtual_jtag:1.0-r1
+description: Advanced Debug System wrapper for altera virtual jtag
+
+filesets:
+  rtl_files:
+    files: [altera_virtual_jtag.v : {file_type: verilogSource}]
+
+targets:
+  default:
+    filesets: [rtl_files]
+
+provider:
+  name: url
+  filetype: simple
+  url: https://raw.githubusercontent.com/fusesoc/tiny-cores/2353a67ee0e51e3d458eb7bc71a8e1d06438a31c/altera_virtual_jtag/altera_virtual_jtag.v

@@ -1,0 +1,17 @@
+CAPI=2:
+name: ::ompic:1.0-r1
+description: Open Multi-Processor Interrupt Controller core
+
+filesets:
+  rtl_files:
+    files: [rtl/verilog/ipi.v : {file_type: verilogSource}]
+
+targets:
+  default:
+    filesets: [rtl_files]
+
+provider:
+  name   : github
+  user   : openrisc
+  repo   : ompic
+  version: v1.0

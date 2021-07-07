@@ -1,0 +1,327 @@
+CAPI=2:
+
+name : ::servant:1.0.2-r1
+
+filesets:
+  service:
+    files: [servant/ice40_pll.v, servant/service.v]
+    file_type : verilogSource
+    depend : ["fusesoc:utils:generators"]
+
+  mem_files:
+    files:
+      - sw/blinky.hex       : {copyto : blinky.hex}
+      - sw/zephyr_hello.hex : {copyto : zephyr_hello.hex}
+    file_type : user
+
+  servant_tb:
+    files:
+      - bench/servant_sim.v
+      - "!tool_verilator? (bench/uart_decoder.v)"
+      - "!tool_verilator? (bench/servant_tb.v)"
+      - "tool_verilator? (bench/servant_tb.cpp)" : {file_type : cppSource}
+    file_type : verilogSource
+    depend : [vlog_tb_utils]
+
+  soc:
+    files:
+      - servant/servant_clock_gen.v
+      - servant/servant_timer.v
+      - servant/servant_gpio.v
+      - servant/servant_arbiter.v
+      - servant/servant_mux.v
+      -  "tool_quartus? (servant/servant_ram_quartus.sv)" : {file_type : systemVerilogSource}
+      - "!tool_quartus? (servant/servant_ram.v)"
+      - servant/servant.v
+    file_type : verilogSource
+    depend : [serv]
+
+  cyc1000:
+    files:
+      - data/cyc1000.sdc : {file_type : SDC}
+      - data/cyc1000.tcl : {file_type : tclSource}
+      - servant/servclone10_clock_gen.v : {file_type : verilogSource}
+      - servant/servclone10.v : {file_type : verilogSource}
+
+  tinyfpga_bx: {files: [data/tinyfpga_bx.pcf : {file_type : PCF}]}
+  icebreaker : {files: [data/icebreaker.pcf  : {file_type : PCF}]}
+  alhambra   : {files: [data/alhambra.pcf : {file_type : PCF}]}
+
+  lx9_microboard:
+    files:
+      - servant/servant_lx9_clock_gen.v : {file_type : verilogSource}
+      - servant/servant_lx9.v : {file_type : verilogSource}
+      - data/lx9_microboard.ucf : {file_type : UCF}
+
+  nexys_a7:
+    files:
+      - servant/servix_clock_gen.v : {file_type : verilogSource}
+      - servant/servix.v : {file_type : verilogSource}
+      - data/nexys_a7.xdc : {file_type : xdc}
+  arty_a7_35t:
+    files:
+      - servant/servix_clock_gen.v : {file_type : verilogSource}
+      - servant/servix.v : {file_type : verilogSource}
+      - data/arty_a7_35t.xdc : {file_type : xdc}
+
+  pipistrello:
+    files:
+      - servant/servis_clock_gen.v : {file_type : verilogSource}
+      - servant/servis.v : {file_type : verilogSource}
+      - data/pipistrello.ucf : {file_type : UCF}
+
+  ulx3s:
+    files:
+      - data/ulx3s.lpf : {file_type : LPF}
+      - servant/ecppll.v : {file_type : verilogSource}
+      - servant/servant_ecp5_clock_gen.v : {file_type : verilogSource}
+      - servant/servant_ecp5.v : {file_type : verilogSource}
+
+  upduino2:
+    files:
+      - servant/servant_upduino2.v : {file_type : verilogSource}
+      - data/upduino2.pcf : {file_type : PCF}
+
+  zcu106:
+    files:
+      - servant/servus_clock_gen.v : {file_type : verilogSource}
+      - servant/servus.v : {file_type : verilogSource}
+      - data/zcu106.xdc : {file_type : xdc}
+
+targets:
+  default:
+    filesets : [soc]
+
+  cyc1000:
+    default_tool: quartus
+    description: cyc1000 FPGA board
+    filesets : [mem_files, soc, cyc1000]
+    parameters : [memfile, memsize=32768]
+    tools:
+      quartus:
+        family : Cyclone 10 LP
+        device : 10CL025YU256C8G
+    toplevel : servclone10
+
+  icebreaker:
+    default_tool : icestorm
+    filesets : [mem_files, soc, service, icebreaker]
+    generate: [icebreaker_pll]
+    parameters : [memfile, memsize, PLL=ICE40_PAD]
+    tools:
+      icestorm:
+        nextpnr_options: [--up5k, --freq, 16]
+        pnr: next
+    toplevel : service
+
+  lx9_microboard:
+    default_tool: ise
+    description : LX9 Microboard
+    filesets : [mem_files, soc, lx9_microboard]
+    parameters : [memfile, memsize]
+    tools:
+      ise:
+        family  : Spartan6
+        device  : xc6slx9
+        package : csg324
+        speed   : -2
+    toplevel : servant_lx9
+
+
+  tinyfpga_bx:
+    default_tool : icestorm
+    filesets : [mem_files, soc, service, tinyfpga_bx]
+    generate: [tinyfpga_bx_pll]
+    parameters : [memfile, memsize, PLL=ICE40_CORE]
+    tools:
+      icestorm:
+        nextpnr_options : [--lp8k, --package, cm81, --freq, 32]
+        pnr: next
+    toplevel : service
+
+  alhambra:
+    default_tool : icestorm
+    description: Open-hardware iCE40HX4K FPGA board
+    filesets : [mem_files, soc, service, alhambra]
+    generate: [alhambra_pll]
+    parameters : [memfile, memsize, PLL=ICE40_CORE]
+    tools:
+      icestorm:
+        nextpnr_options : [--hx8k, --package, "tq144:4k", --freq, 32]
+        pnr: next
+    toplevel : service
+
+  lint:
+    default_tool : verilator
+    filesets : [soc]
+    tools:
+      verilator:
+        mode : lint-only
+    toplevel : servant
+
+  nexys_a7:
+    default_tool: vivado
+    filesets : [mem_files, soc, nexys_a7]
+    parameters : [memfile, memsize, frequency=32]
+    tools:
+      vivado: {part : xc7a100tcsg324-1}
+    toplevel : servix
+
+  arty_a7_35t:
+    default_tool: vivado
+    filesets : [mem_files, soc, arty_a7_35t]
+    parameters : [memfile, memsize, frequency=16]
+    tools:
+      vivado: {part : xc7a35ticsg324-1L}
+    toplevel : servix
+
+  pipistrello:
+    default_tool: ise
+    description : Saanlima pipistrello
+    filesets : [mem_files, soc, pipistrello]
+    parameters : [memfile, memsize]
+    tools:
+      ise:
+        family  : Spartan6
+        device  : xc6slx45
+        package : csg324
+        speed   : -3
+    toplevel : servis
+
+  sim:
+    default_tool: icarus
+    filesets : [soc, servant_tb]
+    parameters :
+      - RISCV_FORMAL
+      - SERV_CLEAR_RAM=true
+      - firmware
+      - memsize
+    toplevel : servant_tb
+
+  ulx3s_85:
+    default_tool: diamond
+    description : ULX3S 85k version
+    filesets : [mem_files, soc, ulx3s]
+    parameters : [memfile, memsize]
+    tools:
+      diamond:
+        part : LFE5U-85F-6BG381C
+      trellis:
+        nextpnr_options : [--package, CABGA381, --85k]
+    toplevel: servant_ecp5
+
+  upduino2:
+    default_tool : icestorm
+    filesets : [mem_files, soc, upduino2]
+    parameters : [memfile, memsize]
+    tools:
+      icestorm:
+        nextpnr_options: [--package, sg48, --up5k, --freq, 24]
+        pnr: next
+    toplevel : servant_upduino2
+
+  verilator_tb:
+    default_tool: verilator
+    filesets : [soc, servant_tb]
+    parameters :
+      - RISCV_FORMAL
+      - firmware
+      - memsize
+      - signature
+      - timeout
+      - uart_baudrate
+      - vcd
+      - vcd_start
+    tools:
+      verilator:
+        verilator_options : [--trace]
+    toplevel : servant_sim
+
+  zcu106:
+    default_tool: vivado
+    description : Zynq UltraScale+ MPSoC ZCU106 Evaluation Kit
+    filesets : [mem_files, soc, zcu106]
+    parameters : [memfile, memsize]
+    tools:
+      vivado: {part : xczu7ev-ffvc1156-2-e}
+    toplevel : servus
+
+parameters:
+  PLL:
+    datatype : str
+    description : PLL type to use for main clock generation
+    paramtype : vlogparam
+
+  RISCV_FORMAL:
+    datatype  : bool
+    paramtype : vlogdefine
+
+  SERV_CLEAR_RAM:
+    datatype  : bool
+    paramtype : vlogdefine
+
+  firmware:
+    datatype : file
+    description : Preload RAM with a hex file at runtime (overrides memfile)
+    paramtype : plusarg
+
+  frequency:
+    datatype    : int
+    description : PLL output frequency
+    paramtype   : vlogparam
+
+  memfile:
+    datatype    : file
+    description : Preload RAM with a hex file at compile-time
+    paramtype   : vlogparam
+
+  memsize:
+    datatype    : int
+    default     : 8192
+    description : Memory size in bytes for RAM (default 8kiB)
+    paramtype   : vlogparam
+
+  signature:
+    datatype : file
+    paramtype : plusarg
+  uart_baudrate:
+    datatype : int
+    description : Treat q output as an UART with the specified baudrate (0 or omitted parameter disables UART decoding)
+    paramtype : plusarg
+
+  timeout:
+    datatype : int
+    paramtype : plusarg
+
+  vcd:
+    datatype : bool
+    paramtype : plusarg
+
+  vcd_start:
+    datatype    : int
+    description : Delay start of VCD dumping until the specified time
+    paramtype   : plusarg
+
+generate:
+  icebreaker_pll:
+    generator: icepll
+    parameters:
+      freq_out : 16
+
+  tinyfpga_bx_pll:
+    generator: icepll
+    parameters:
+      freq_in  : 16
+      freq_out : 32
+
+  alhambra_pll:
+    generator: icepll
+    parameters:
+      freq_in  : 12
+      freq_out : 32
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : serv
+  version : 14cbe03a61c28959fd0d334c39ad7f65c1f2eee4

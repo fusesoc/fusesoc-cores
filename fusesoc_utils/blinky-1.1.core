@@ -1,0 +1,1143 @@
+CAPI=2:
+name : fusesoc:utils:blinky:1.1
+
+filesets:
+  ac701:
+    files:
+      - ac701/blinky_ac701.v : {file_type : verilogSource}
+      - ac701/blinky.xdc : {file_type : xdc}
+
+  alchitry_au:
+    files:
+      - alchitry_au/blinky.xdc : {file_type : xdc}
+
+  alhambra_II:
+    files: [alhambra_II/pinout.pcf : {file_type : PCF}]
+
+  AnalogMax:
+    files:
+      - AnalogMax/AnalogMax.sdc : {file_type : SDC}
+      - AnalogMax/pinmap.tcl  : {file_type: tclSource}
+
+  apf27:
+    files:
+      - apf27/blinky.ucf :  {file_type : UCF}
+      - apf27/options.tcl : {file_type : tclSource}
+
+  apf51:
+    files:
+      - apf51/blinky.ucf : {file_type : UCF}
+      - apf51/options.tcl : {file_type : tclSource}
+
+  arty_a7_35t:
+    files: [arty_a7_35t/blinky.xdc : {file_type : xdc}]
+
+  arty_s7_50t:
+    files: [arty_s7_50t/blinky.xdc : {file_type : xdc}]
+
+  arty_z7_20:
+    files: [arty_z7_20/blinky.xdc : {file_type : xdc}]
+
+  basys3:
+    files: [basys3/blinky.xdc : {file_type : xdc}]
+
+  c10lp_refkit:
+    files:
+      - c10lp_refkit/c10lp_refkit.sdc : {file_type: SDC}
+      - c10lp_refkit/pinmap.tcl       : {file_type: tclSource}
+
+  cmod_a7:
+    files: [cmod_a7/blinky.xdc : {file_type : xdc}]
+
+  colorlight_5a75b:
+    files: [colorlight_5a75b/blinky.lpf : {file_type : LPF}]
+
+  crosslink_nx_evn:
+    files: [crosslink_nx_evn/blinky.pdc : {file_type : PDC}]
+
+  cyc1000:
+    files:
+      - cyc1000/cyc1000.sdc : {file_type : SDC}
+      - cyc1000/pinmap.tcl  : {file_type: tclSource}
+
+  cisco-hwic-3g-cdma:
+    files:
+      - cisco-hwic-3g-cdma/cisco-hwic-3g-cdma.sdc : {file_type : SDC}
+      - cisco-hwic-3g-cdma/pinmap.tcl  : {file_type: tclSource}
+
+  core_ep4ce10:
+    files:
+      - core_ep4ce10/core_ep4ce10.sdc : {file_type : SDC}
+      - core_ep4ce10/pinmap.tcl   : {file_type: tclSource}
+
+  sockit:
+    files:
+      - sockit/sockit.sdc : {file_type : SDC}
+      - sockit/pinmap.tcl   : {file_type: tclSource}
+
+  deca:
+    files:
+      - deca/deca.sdc : {file_type : SDC}
+      - deca/pinmap.tcl   : {file_type: tclSource}
+
+  de0_nano:
+    files:
+      - de0_nano/de0_nano.sdc : {file_type : SDC}
+      - de0_nano/pinmap.tcl   : {file_type: tclSource}
+
+  de0_nanosoc:
+    files:
+      - de0_nanosoc/de0_nanosoc.sdc  : {file_type : SDC}
+      - de0_nanosoc/pinmap.tcl       : {file_type : tclSource}
+
+  de5_net:
+    files:
+      - de5_net/de5_net.sdc : {file_type : SDC}
+      - de5_net/pinmap.tcl  : {file_type: tclSource}
+
+  de10_nano:
+    files:
+      - de10_nano/de10_nano.sdc : {file_type : SDC}
+      - de10_nano/pinmap.tcl  : {file_type : tclSource}
+
+  de10_soc:
+    files:
+      - de10_soc/de10_soc.sdc : {file_type : SDC}
+      - de10_soc/pinmap.tcl  : {file_type : tclSource}
+
+  ep2c5t144:
+    files:
+      - ep2c5t144/ep2c5t144.sdc : {file_type : SDC}
+      - ep2c5t144/pinmap.tcl  : {file_type: tclSource}
+
+  soc_kit:
+    files:
+      - soc_kit/soc_kit.sdc : {file_type : SDC}
+      - soc_kit/pinmap.tcl  : {file_type : tclSource}
+
+  de1_soc_revF:
+    files:
+      - de1_soc_revF/de1_soc_revF.sdc : {file_type : SDC}
+      - de1_soc_revF/pinmap.tcl       : {file_type : tclSource}
+
+  ecp5_evn:
+    files: [ecp5_evn/blinky.lpf : {file_type : LPF}]
+
+  fpc_iii:
+    files: [fpc_iii/fpc_iii.lpf : {file_type : LPF}]
+
+  genesys2:
+    files:
+      - genesys2/blinky.xdc : {file_type : xdc}
+      - genesys2/blinky_genesys2.v : {file_type : verilogSource}
+
+  go_board:
+    files:
+      - go_board/pinout.pcf : {file_type : PCF}
+      - go_board/blinky_go_board.v : {file_type : verilogSource}
+
+  ice40hx1k_evb:
+    files: [ice40hx1k_evb/pinout.pcf : {file_type : PCF}]
+
+  ice40-hx1k_icestick:
+    files: [ice40-hx1k_icestick/pinout.pcf : {file_type : PCF}]
+
+  ice40-hx8k_breakout:
+    files: [ice40-hx8k_breakout/pinout.pcf : {file_type : PCF}]
+
+  icebreaker:
+    files: [icebreaker/pinout.pcf : {file_type : PCF}]
+
+  iceFUN:
+    files:
+      - iceFUN/blinky.v : {file_type : verilogSource}
+      - iceFUN/iceFUN.pcf : {file_type : PCF}
+
+  icesugar:
+    files:
+      - icesugar/blinky.v : {file_type : verilogSource}
+      - icesugar/icesugar.pcf : {file_type : PCF}
+
+  iceWerx:
+    files: [iceWerx/pinout.pcf : {file_type : PCF}]
+
+  lx9_microboard:
+    files: [lx9_microboard/blinky.ucf : {file_type : UCF}]
+
+  kcu1500:
+    files:
+      - kcu1500/blinky_kcu1500.v : {file_type : verilogSource}
+      - kcu1500/blinky.xdc : {file_type : xdc}
+
+  machXO2_breakout:
+    files:
+      - machXO2_breakout/blinky.lpf : {file_type : LPF}
+      - machXO2_breakout/blinky_machXO2_breakout.v : {file_type : verilogSource}
+
+  machXO3_breakout:
+    files: [machXO3_breakout/blinky.lpf : {file_type : LPF}]
+
+  max1000:
+    files:
+      - max1000/max1000.sdc : {file_type : SDC}
+      - max1000/pinmap.tcl  : {file_type: tclSource}
+
+  mini_s7: {files: [mini_s7/blinky.xdc : {file_type : xdc}]}
+
+  myir_fz3: {files: [myir_fz3/blinky.xdc : {file_type : xdc}]}
+
+  nexys_4: {files: [nexys_4/blinky.xdc : {file_type : xdc}]}
+
+  nexys_a7: {files: [nexys_a7/blinky.xdc : {file_type : xdc}]}
+
+  nexys_video: {files: [nexys_video/blinky.xdc : {file_type : xdc}]}
+
+  opos6ul_sp:
+    files:
+      - opos6ul_sp/blinky.ucf : {file_type : UCF}
+      - opos6ul_sp/options.tcl : {file_type : tclSource}
+
+  orangecrab:
+    files:
+      - orangecrab/orangecrab_r02.lpf : {file_type : LPF}
+      - orangecrab/blinky_orangecrab.v : {file_type : verilogSource}
+
+  pipistrello:
+    files: [pipistrello/blinky.ucf : {file_type : UCF}]
+
+  rtl:
+    files: [blinky.v : {file_type : verilogSource}]
+
+  rz_easyfpga_a2.x:
+    files:
+      - rz_easyfpga_a2.x/rz_easyfpga_a2.x.sdc : {file_type : SDC}
+      - rz_easyfpga_a2.x/pinmap.tcl    : {file_type: tclSource}
+
+  proginfo:
+    files: [sw/proginfo.py : {file_type : user, copyto : proginfo.py}]
+
+  pynq_z2:
+    files:
+      - pynq_z2/blinky_pynq_z2.v : {file_type : verilogSource}
+      - pynq_z2/blinky.xdc : {file_type : xdc}
+
+  spartan_edge_accelerator_board:
+    files: [spartan_edge_accelerator_board/blinky.xdc : {file_type : xdc}]
+
+  tang_nano:
+    files:
+      - tang_nano/blinky.v : {file_type : verilogSource}
+      - tang_nano/tangnano.cst : {file_type : CST}
+
+  tb:
+    files: [blinky_tb.v : {file_type : verilogSource}]
+    depend: [vlog_tb_utils]
+
+  tinyfpga_bx:
+    files: [tinyfpga_bx/pinout.pcf : {file_type : PCF}]
+  
+  ultra96_v2:
+    files:
+      - ultra96_v2/blinky_ultra96_v2.v : {file_type : verilogSource}
+      - ultra96_v2/design_1_wrapper.v : {file_type : verilogSource}  
+      - ultra96_v2/blinky.xdc : {file_type : xdc}
+      - ultra96_v2/bd_ultra96_v2.tcl : {file_type : tclSource}
+
+  ulx3s:
+    files:
+      - ulx3s/ulx3s_v20.lpf : {file_type : LPF, copyto : ulx3s_v20.lpf}
+      - ulx3s/blinky_ulx3s.v : {file_type : verilogSource}
+
+  upduino2:
+    files:
+      - upduino2/blinky_upduino2.v : {file_type : verilogSource}
+      - upduino2/pinout.pcf : {file_type : PCF}
+
+  xc6sl9_hseda_eda6.1:
+    files: [xc6sl9_hseda_eda6.1/blinky.ucf : {file_type : UCF}]
+
+  zcu102:
+    files:
+      - zcu102/blinky_zcu102.v : {file_type : verilogSource}
+      - zcu102/blinky.xdc : {file_type : xdc}
+
+  zcu106:
+    files:
+      - zcu106/blinky_zcu106.v : {file_type : verilogSource}
+      - zcu106/blinky.xdc : {file_type : xdc}
+
+  zrtech_v2:
+    files:
+      - zrtech_v2/zrtech_v2.sdc : {file_type : SDC}
+      - zrtech_v2/pinmap.tcl    : {file_type: tclSource}
+
+  zybo_z7:
+    files:
+      - zybo_z7/blinky_zybo_z7.v : {file_type : verilogSource}
+      - zybo_z7/blinky.xdc : {file_type : xdc}
+
+  ebaz4205:
+    files:
+      - ebaz4205/blinky_ebaz4205.v : {file_type : verilogSource}
+      - ebaz4205/combined.xdc : {file_type : xdc}
+
+  polarfireeval:
+    files:
+      - polarfireeval/blinky_polarfireeval.v : {file_type : verilogSource}
+      - polarfireeval/polarfireeval.pdc : {file_type : PDC}
+
+  eclypse_z7:
+    files:
+      - eclypse_z7/blinky.xdc : {file_type : xdc}
+
+  fomu-pvt:
+    files:
+      - fomu/fomu-pvt.pcf : {file_type : PCF}
+
+  basys2:
+    files:
+      - basys2/blinky.ucf :  {file_type : UCF}
+      - basys2/options.tcl : {file_type : tclSource}
+
+  stlv7325:
+    files:
+      - stlv7325/blinky.xdc : {file_type : xdc}
+      - stlv7325/blinky_stlv7325.sv : {file_type : systemVerilogSource}
+
+  Wukong_v1:
+    files: 
+      - QMTECH_Artix7_Wukong/Wukong_v1.xdc : {file_type : xdc}
+      - QMTECH_Artix7_Wukong/blinky.v : {file_type : verilogSource}
+
+  Wukong_v2:
+    files: 
+      - QMTECH_Artix7_Wukong/Wukong_v2.xdc : {file_type : xdc}
+      - QMTECH_Artix7_Wukong/blinky.v : {file_type : verilogSource}
+
+targets:
+  default: &default
+    filesets : [rtl]
+    toplevel: ["is_toplevel? (blinky)"]
+
+  ac701:
+    default_tool: vivado
+    description : Xilinx Artix-7 FPGA AC701 Evaluation Kit
+    filesets : [rtl, ac701]
+    tools:
+      vivado:
+        part : xc7a200t-fbg676-2
+    toplevel : blinky_ac701
+
+  alchitry_au:
+    default_tool: vivado
+    description : SparkFun Alchitry Au, 100 MHz Xilinx Artix-7 with 256MB DDR3 RAM
+    filesets: [rtl, alchitry_au]
+    parameters: [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part: xc7a35tftg256-1
+    toplevel: blinky
+
+  alhambra_II:
+    default_tool : icestorm
+    description : Alhambra II iCE40-HX4K based open-source hardware board
+    hooks:
+      post_run: [iceprog]
+    filesets : [rtl, proginfo, alhambra_II]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      icestorm:
+        nextpnr_options : [--hx8k, --package, "tq144:4k"]
+        pnr : next
+    toplevel : blinky
+
+  AnalogMax:
+    default_tool : quartus
+    filesets : [rtl, AnalogMax]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      quartus:
+        family : MAX 10
+        device : 10M08SAU169C8G
+    toplevel: blinky
+
+  apf27:
+    default_tool : ise
+    filesets : [rtl, apf27]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      ise:
+        family  : Spartan3A
+        device  : xc3s200a
+        package : ft256
+        speed   : -5
+    toplevel : blinky
+
+  apf51:
+    default_tool : ise
+    filesets : [rtl, apf51]
+    parameters : [clk_freq_hz=92850000]
+    tools:
+      ise:
+        family  : Spartan6
+        device  : xc6slx9
+        package : csg225
+        speed   : -2
+    toplevel : blinky
+
+  arty_a7_35t:
+    default_tool : vivado
+    filesets : [rtl, arty_a7_35t]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7a35ticsg324-1L
+    toplevel : blinky
+
+  arty_s7_50t:
+    default_tool : vivado
+    filesets : [rtl, arty_s7_50t]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7s50csga324-1
+    toplevel : blinky
+
+  arty_z7_20:
+    default_tool : vivado
+    filesets : [rtl, arty_z7_20]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7z020clg400-1
+    toplevel : blinky
+
+  basys3:
+    default_tool : vivado
+    filesets : [rtl, basys3]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7a35tcpg236-1
+    toplevel : blinky
+
+  c10lp_refkit:
+    <<: *default
+    default_tool : quartus
+    description : Cyclone 10 LP RefKit 10CL055 Development Board
+    filesets_append : [c10lp_refkit]
+    parameters : [clk_freq_hz=25000000]
+    tools:
+      quartus:
+        family : Cyclone 10 LP
+        device : 10CL055YU484C8G
+
+  cmod_a7:
+    default_tool : vivado
+    description : Digilent Cmod A7
+    filesets : [rtl, cmod_a7]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      vivado:
+        part : xc7a35tcpg236-1
+    toplevel : blinky
+
+  colorlight_5a75b:
+    default_tool : trellis
+    filesets : [rtl, colorlight_5a75b]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      trellis:
+        nextpnr_options : [--25k --package CABGA256 --speed 6 --freq 65]
+    toplevel : blinky
+
+  crosslink_nx_evn:
+    default_tool : radiant
+    description : CrossLink NX Evaluation Board
+    filesets : [rtl, crosslink_nx_evn]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      radiant : {part: LIFCL-40-9BG400C}
+    toplevel : blinky
+
+  cyc1000:
+    <<: *default
+    default_tool : quartus
+    filesets_append : [cyc1000]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      quartus:
+        family : Cyclone 10 LP
+        device : 10CL025YU256C8G
+
+  cisco-hwic-3g-cdma:
+    <<: *default
+    default_tool : quartus
+    description: Cisco HWIC-3G-CDMA Modem
+    filesets_append : [cisco-hwic-3g-cdma]
+    parameters : [clk_freq_hz=25000000]
+    tools:
+      quartus:
+        family : Cyclone II
+        device : EP2C35F484C8
+
+  core_ep4ce10:
+    default_tool : quartus
+    filesets : [rtl, core_ep4ce10]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone IV E
+        device : EP4CE10F17C8
+    toplevel: blinky
+
+  sockit:
+    default_tool : quartus
+    description : Arrow Sockit Development kit by Terasic
+    filesets : [rtl, sockit]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone V
+        device : 5CSXFC6D6F31C6
+    toplevel: blinky
+
+  deca:
+    default_tool : quartus
+    description : DECA Development kit by Terasic
+    filesets : [rtl, deca]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Max 10
+        device : 10M50DAF484C6GES
+    toplevel: blinky
+
+  de0_nano:
+    default_tool : quartus
+    filesets : [rtl, de0_nano]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone IV E
+        device : EP4CE22F17C6
+    toplevel: blinky
+
+  de0_nanosoc:
+    default_tool : quartus
+    filesets : [rtl, de0_nanosoc]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone V
+        device : 5CSEMA4U23C6
+        board_device_index : 2
+    toplevel: blinky
+
+  de1_soc_revF:
+    default_tool : quartus
+    filesets : [rtl, de1_soc_revF]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone V
+        device : 5CSEMA5F31C6
+        board_device_index : 2
+    toplevel: blinky
+
+  de10_nano:
+    default_tool : quartus
+    description : Terasic DE10 Nano Kit
+    filesets : [rtl, de10_nano]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone V
+        device : 5CSEBA6U23I7
+        board_device_index : 2
+    toplevel: blinky
+
+  de10_soc:
+    default_tool : quartus
+    filesets : [rtl, de10_soc]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone V
+        device : 5CSXFC6D6F31C6
+        cable : "DE-SoC"
+        board_device_index : 2
+    toplevel: blinky
+
+  de5_net:
+    default_tool : quartus
+    filesets : [rtl, de5_net]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Stratix V
+        device : 5SGXEA7N2F45C2
+    toplevel: blinky
+
+  ecp5_evn:
+    default_tool : trellis
+    description : ECP5 Evaluation Board
+    filesets : [rtl, ecp5_evn]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      trellis:
+        nextpnr_options : [--um5g-85k --package CABGA381]
+    toplevel : blinky
+
+  ep2c5t144:
+    <<: *default
+    default_tool : quartus
+    description: EP2C5T144 Development Board
+    filesets_append : [ep2c5t144]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone II
+        device : EP2C5T144C6
+
+  fpc_iii:
+    default_tool : trellis
+    description : FPC-III Board
+    filesets : [rtl, fpc_iii]
+    parameters : [clk_freq_hz=25000000]
+    tools:
+      trellis:
+        nextpnr_options : [--85k --package CABGA381 --speed 8]
+    toplevel : blinky
+
+  genesys2:
+    default_tool: vivado
+    description: Digilent Genesys2 Board
+    filesets : [rtl, genesys2]
+    tools:
+      vivado:
+        part : xc7k325tffg900-2
+    toplevel : blinky_genesys2
+
+  soc_kit:
+    default_tool : quartus
+    filesets : [rtl, soc_kit]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone V
+        device : 5CSXFC6D6F31C6
+        board_device_index : 2
+        cable : "USB-BlasterII"  # Is sufficient
+    toplevel: blinky
+
+  go_board:
+    default_tool : icestorm
+    filesets : [proginfo, go_board]
+    parameters : [clk_freq_hz=25000000]
+    tools:
+      icestorm:
+        nextpnr_options : [--hx1k, --package, vq100]
+        pnr : next
+    toplevel : blinky_go_board
+
+  ice40hx1k_evb:
+    default_tool : icestorm
+    filesets : [rtl, proginfo, ice40hx1k_evb]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      icestorm:
+        nextpnr_options : [--hx1k, --package, vq100]
+        pnr : next
+    toplevel : blinky
+
+  ice40-hx1k_icestick:
+    default_tool : icestorm
+    filesets : [rtl, proginfo, ice40-hx1k_icestick]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      icestorm:
+        nextpnr_options : [--hx1k, --package, tq144]
+        pnr : next
+    toplevel : blinky
+
+  ice40-hx8k_breakout:
+    default_tool : icestorm
+    filesets : [rtl, proginfo, ice40-hx8k_breakout]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      icestorm:
+        nextpnr_options : [--hx8k, --package, ct256]
+        pnr : next
+    toplevel : blinky
+
+  icebreaker:
+    default_tool : icestorm
+    filesets : [rtl, proginfo, icebreaker]
+    hooks:
+      post_run: [iceprog]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      icestorm:
+        nextpnr_options: [--up5k, --package, sg48]
+        pnr: next
+    toplevel : blinky
+
+  iceFUN:
+    default_tool : icestorm
+    filesets : [iceFUN]
+    tools:
+       icestorm:
+        nextpnr_options : [--hx8k, --package, cb132]
+        pnr : next
+    toplevel : top
+
+  icesugar:
+    default_tool : icestorm
+    description : iCESugar board
+    filesets : [rtl, proginfo, icesugar]
+    hooks:
+      post_run: [icesprog]
+    tools:
+       icestorm:
+        nextpnr_options : [--up5k, --package, sg48]
+        pnr : next
+    toplevel : Top
+
+  iceWerx:
+    default_tool : icestorm
+    filesets : [rtl,iceWerx]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      icestorm:
+        nextpnr_options : [--hx8k, --package, cb132]
+        pnr : next
+    toplevel : blinky
+
+
+  lx9_microboard:
+    default_tool : ise
+    filesets : [rtl, lx9_microboard]
+    parameters : [clk_freq_hz=40000000]
+    tools:
+      ise:
+        family  : Spartan6
+        device  : xc6slx9
+        package : csg324
+        speed   : -2
+    toplevel : blinky
+
+  kcu1500:
+    default_tool: vivado
+    description : Kintex UltraScale KCU1500 Acceleration Development Kit
+    filesets : [rtl, kcu1500]
+    tools:
+      vivado:
+        part : xcku115-flvb2104-2-e
+    toplevel : blinky_kcu1500
+
+  machXO2_breakout:
+    default_tool : diamond
+    description : MachXO2 Breakout Board Evaluation Kit
+    filesets : [rtl, machXO2_breakout]
+    tools:
+      diamond: {part: LCMXO2-7000HE-4TG144C}
+    toplevel : blinky_machXO2_breakout
+
+  machXO3_breakout:
+    default_tool : diamond
+    description : Lattice MachXO3LF Starter Kit LCMX03LF-6900C
+    filesets : [rtl, machXO3_breakout]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      diamond: {part: LCMXO3LF-6900C-5BG256C}
+    toplevel : blinky
+
+  max1000:
+    <<: *default
+    default_tool : quartus
+    filesets_append : [max1000]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      quartus:
+        family : MAX 10
+        device : 10M08SAU169C8G
+
+  mini_s7:
+    default_tool: vivado
+    filesets : [rtl, mini_s7]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7s25ftgb196-1
+    toplevel : blinky
+
+  myir_fz3:
+    default_tool: vivado
+    description: MYiR Tech FZ3 Card - Deep Learning Accelerator Card
+    filesets: [rtl, myir_fz3]
+    parameters : [clk_freq_hz=25000000]
+    tools:
+      vivado:
+        part : xczu3eg-sfvc784-1-e
+    toplevel : blinky
+
+  nexys_4:
+    default_tool: vivado
+    filesets : [rtl, nexys_4]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7a100tcsg324-1
+    toplevel : blinky
+
+  nexys_a7:
+    default_tool: vivado
+    filesets : [rtl, nexys_a7]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7a100tcsg324-1
+    toplevel : blinky
+
+  nexys_video:
+    default_tool: vivado
+    filesets : [rtl, nexys_video]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7a200tsbg484-1
+    toplevel : blinky
+
+  opos6ul_sp:
+    default_tool : ise
+    filesets : [rtl, opos6ul_sp]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      ise:
+        family  : Spartan6
+        device  : xc6slx9
+        package : csg225
+        speed   : -2
+    toplevel : blinky
+
+  orangecrab_r0.2: &orangecrab
+    default_tool : trellis
+    description : OrangeCrab R0.2
+    filesets : [rtl, proginfo, orangecrab]
+    hooks:
+      post_run: [dfu-util]
+    tools:
+      trellis:
+        nextpnr_options : [--package, CSFBGA285, --25k]
+    toplevel : blinky_orangecrab
+
+  pipistrello:
+    default_tool : ise
+    filesets : [rtl, pipistrello]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      ise:
+        family  : Spartan6
+        device  : xc6slx45
+        package : csg324
+        speed   : -3
+    toplevel : blinky
+
+  pynq_z2:
+    default_tool: vivado
+    description : Pynq-Z2 Zynq Z7020 Evaluation Kit
+    filesets : [rtl, pynq_z2]
+    tools:
+      vivado:
+        part : xc7z020clg400-1
+    toplevel : blinky_pynq_z2
+
+  rz_easyfpga_a2.x:
+    default_tool : quartus
+    filesets : [rtl, rz_easyfpga_a2.x]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone IV E
+        device : EP4CE6E22C8
+    toplevel: blinky
+
+  sim:
+    default_tool: icarus
+    filesets : [rtl, tb]
+    parameters : [clk_freq_hz, pulses]
+    tools:
+      modelsim:
+        vlog_options: [-timescale=1ns/1ns]
+      xsim:
+        xelab_options: [--timescale, 1ns/1ns]
+    toplevel: blinky_tb
+
+  spartan_edge_accelerator_board:
+    default_tool : vivado
+    description : Spartan Edge Accelerator Board
+    filesets : [rtl, spartan_edge_accelerator_board]
+    parameters : [clk_freq_hz=100000000]
+    tools:
+      vivado:
+        part : xc7s15ftgb196-1
+    toplevel : blinky
+
+  tang_nano:
+    default_tool: apicula
+    filesets: [tang_nano]
+    tools:
+      apicula:
+        device: GW1N-LV1QN48C6/I5
+    toplevel: top
+
+  tinyfpga_bx:
+    default_tool : icestorm
+    filesets : [rtl, proginfo, tinyfpga_bx]
+    hooks:
+      post_run: [tinyprog]
+    parameters : [clk_freq_hz=16000000]
+    tools:
+      icestorm:
+        nextpnr_options : [--lp8k, --package, cm81]
+        pnr: next
+    toplevel : blinky
+
+  ultra96_v2:
+    default_tool : vivado
+    description : Zynq UltraScale+ MPSoC Ultra96-v2 Development Board 
+    filesets : [rtl, ultra96_v2]
+    tools:
+      vivado:
+        part : xczu3eg-sbva484-1-i
+    toplevel : blinky_ultra96_v2
+
+  ulx3s_45: &ulx3s
+    default_tool : trellis
+    description : Radiona ULX3S board with 45k FPGA
+    filesets : [rtl, proginfo, ulx3s]
+    hooks:
+      post_run: [ujprog]
+    tools:
+      diamond: {part: LFE5U-45F-6BG381C}
+      trellis:
+        nextpnr_options : [--package, CABGA381, --45k, --lpf, ulx3s_v20.lpf]
+    toplevel : blinky_ulx3s
+
+  ulx3s_85:
+    <<: *ulx3s
+    description : Radiona ULX3S board with 85k FPGA
+    tools:
+      diamond: {part: LFE5U-85F-6BG381C}
+      trellis:
+        nextpnr_options : [--package, CABGA381, --85k, --lpf, ulx3s_v20.lpf]
+
+  upduino2:
+    default_tool : icestorm
+    filesets : [rtl, proginfo, upduino2]
+    hooks:
+      post_run: [iceprog]
+    tools:
+      icestorm:
+        nextpnr_options : [--up5k]
+        pnr: next
+    toplevel : blinky_upduino2
+
+  Wukong_100t_v1:
+    default_tool: vivado
+    description : QMTECH Artix-7 XC7A100T Wukong Board first revision
+    filesets : [Wukong_v1]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      vivado:
+        part : xc7a100tfgg676-2
+    toplevel : blinky
+
+  Wukong_100t_v2:
+    default_tool: vivado
+    description : QMTECH Artix-7 XC7A100T Wukong Board second revision
+    filesets : [Wukong_v2]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      vivado:
+        part : xc7a100tfgg676-2
+    toplevel : blinky
+
+  Wukong_200t_v2:
+    default_tool: vivado
+    description : QMTECH Artix-7 XC7A200T Wukong Board second revision
+    filesets : [Wukong_v2]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      vivado:
+        part : xc7a200tfbg676-1
+    toplevel : blinky
+
+  xc6sl9_hseda_eda6.1:
+    default_tool : ise
+    filesets : [rtl, xc6sl9_hseda_eda6.1]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      ise:
+        family  : Spartan6
+        device  : xc6slx9
+        package : tqg144
+        speed   : -2
+    toplevel : blinky
+
+  zcu102:
+    default_tool: vivado
+    description : Zynq UltraScale+ MPSoC ZCU102 Evaluation Kit
+    filesets : [rtl, zcu102]
+    tools:
+      vivado:
+        part : xczu9eg-ffvb1156-2-e
+    toplevel : blinky_zcu102
+
+  zcu106:
+    default_tool: vivado
+    description : Zynq UltraScale+ MPSoC ZCU106 Evaluation Kit
+    filesets : [rtl, zcu106]
+    tools:
+      vivado:
+        part : xczu7ev-ffvc1156-2-e
+    toplevel : blinky_zcu106
+
+  zrtech_v2:
+    default_tool : quartus
+    filesets : [rtl, zrtech_v2]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      quartus:
+        family : Cyclone IV E
+        device : EP4CE6E22C8
+    toplevel: blinky
+
+  ebaz4205: &ebaz4205
+    default_tool: vivado
+    description : EBAZ4205 'Development' Board
+    filesets : [rtl, ebaz4205]
+    tools:
+      vivado:
+        part : xc7z010clg400-1
+    toplevel : blinky_ebaz4205
+
+  zybo_z7-10: &zybo_z7
+    default_tool: vivado
+    description : Digilent Zybo Z7-10 SoC Kit
+    filesets : [rtl, zybo_z7]
+    tools:
+      vivado:
+        part : xc7z010clg400-1
+    toplevel : blinky_zybo_z7
+
+  zybo_z7-20:
+    <<: *zybo_z7
+    description : Digilent Zybo Z7-20 SoC Kit
+    tools:
+      vivado:
+        part : xc7z020clg400-1
+
+  polarfireeval: &polarfireeval
+    default_tool: libero
+    description : Microsemi Polarfire Evaluation Kit
+    filesets : [rtl, polarfireeval]
+    tools:
+      libero: &liberoMPF300
+        family : PolarFire
+        die : MPF300TS
+        package : FCG1152
+    toplevel : blinky_polarfireeval
+
+  polarfireeval_es:
+    <<: *polarfireeval
+    description : Microsemi Polarfire Evaluation Kit (ES)
+    tools:
+      libero:
+        <<: *liberoMPF300
+        die : MPF300TS_ES
+
+  eclypse_z7:
+    default_tool : vivado
+    description : Digilent Eclypse Z7 SoC Kit SYZYGY-compatible
+    filesets : [rtl, eclypse_z7]
+    parameters : [clk_freq_hz=125000000]
+    tools:
+      vivado:
+        part : xc7z020clg484-1
+    toplevel : blinky
+
+  fomu-pvt:
+    default_tool : icestorm
+    description : Fomu PVT with Lattice ICE40UP5K based open-source board
+    hooks:
+      post_run: [dfu-util-fomu]
+    filesets : [rtl, proginfo, fomu-pvt]
+    parameters : [clk_freq_hz=48000000]
+    tools:
+      icestorm:
+        nextpnr_options : ["--up5k", "--package", "uwg30"]
+        pnr : next
+    toplevel : blinky
+
+  basys2-100e: &basys2
+    default_tool : ise
+    description : Digilent Basys 2 FPGA Development Board, Spartan 3E-100K gates
+    filesets : [rtl, basys2]
+    parameters : [clk_freq_hz=50000000]
+    tools:
+      ise:
+        family  : Spartan3E
+        device  : xc3s100e
+        package : cp132
+        speed   : -5
+    toplevel : blinky
+
+  basys2-250e:
+    <<: *basys2
+    description : Digilent Basys 2 FPGA Development Board, Spartan 3E-250K gates
+    tools:
+      ise:
+        device : xc3s250e
+
+  stlv7325:
+    default_tool: vivado
+    description: STLV7325 - Kintex 7 Development Board
+    filesets : [rtl, stlv7325]
+    tools:
+      vivado:
+        part : xc7k325tffg676-2
+    toplevel : blinky_stlv7325
+
+
+parameters:
+  clk_freq_hz:
+    datatype    : int
+    description : Clock frequency in Hz
+    paramtype   : vlogparam
+  pulses:
+    datatype    : int
+    description : Number of pulses to run in testbench
+    paramtype   : vlogparam
+
+scripts:
+  iceprog:
+    cmd : [python3, proginfo.py, iceprog]
+  icesprog:
+    cmd : [python3, proginfo.py, icesprog]
+  tinyprog:
+    cmd : [python3, proginfo.py, tinyprog]
+  ujprog:
+    cmd : [python3, proginfo.py, ujprog]
+  dfu-util:
+    cmd : [python3, proginfo.py, dfu-util]
+  dfu-util-fomu:
+    cmd : [python3, proginfo.py, dfu-util-fomu]
+
+provider:
+  name    : github
+  user    : fusesoc
+  repo    : blinky
+  version : v1.1
+

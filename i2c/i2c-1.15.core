@@ -1,0 +1,60 @@
+CAPI=2:
+
+name : ::i2c:1.15
+description : WISHBONE revB.2 compliant I2C controller
+
+filesets:
+  rtl_files:
+    files:
+      - rtl/verilog/i2c_master_bit_ctrl.v
+      - rtl/verilog/i2c_master_byte_ctrl.v
+      - rtl/verilog/i2c_master_defines.v: {is_include_file : true}
+      - rtl/verilog/i2c_master_top.v
+      - "tool_verilator? (data/verilator_waiver.vlt)" : {file_type : vlt}
+    file_type : verilogSource
+
+  tb_files:
+    depend:
+      - ">=vlog_tb_utils-1.0"
+      - wiredelay
+    files:
+      - bench/verilog/wb_master_model.v
+      - bench/verilog/tst_bench_top.v
+      - bench/verilog/i2c_slave_model.v
+    file_type : verilogSource
+
+  openlane: {files : [data/openlane.tcl : {file_type : tclSource}]}
+
+targets:
+  default:
+    filesets : [rtl_files]
+  lint:
+    default_tool : verilator
+    filesets : [rtl_files]
+    tools:
+      verilator:
+        mode : lint-only
+    toplevel : i2c_master_top
+  sim:
+    default_tool : icarus
+    filesets : [rtl_files, tb_files]
+    parameters : [WITH_VTU]
+    toplevel : [tst_bench_top]
+
+  sky130:
+    default_tool: openlane
+    filesets: [rtl_files, openlane]
+    toplevel: i2c_master_top
+
+parameters:
+  WITH_VTU:
+    datatype : bool
+    default : true
+    description : "(Internal use: Enables vlog_tb_utils for tb control)"
+    paramtype : vlogdefine
+
+provider:
+  name : github
+  user : freecores
+  repo : i2c
+  version : v1.15

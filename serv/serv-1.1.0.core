@@ -1,0 +1,71 @@
+CAPI=2:
+
+name : ::serv:1.1.0
+
+filesets:
+  core:
+    files:
+      - "tool_verilator? (data/verilator_waiver.vlt)" : {file_type: vlt}
+      - rtl/serv_bufreg.v
+      - rtl/serv_alu.v
+      - rtl/serv_csr.v
+      - rtl/serv_ctrl.v
+      - rtl/serv_decode.v
+      - rtl/serv_immdec.v
+      - rtl/serv_mem_if.v
+      - rtl/serv_rf_if.v
+      - rtl/serv_rf_ram_if.v
+      - rtl/serv_rf_ram.v
+      - rtl/serv_state.v
+      - rtl/serv_top.v
+      - rtl/serv_rf_top.v
+    file_type : verilogSource
+
+targets:
+  default:
+    filesets : [core]
+    parameters :
+      - "is_toplevel? (PRE_REGISTER)"
+      - "is_toplevel? (RESET_STRATEGY)"
+      - RISCV_FORMAL
+      - SERV_CLEAR_RAM
+      - "is_toplevel? (WITH_CSR)"
+    toplevel : ["is_toplevel? (serv_rf_top)"]
+
+  lint:
+    default_tool : verilator
+    filesets : [core]
+    tools:
+      verilator:
+        mode : lint-only
+        verilator_options:
+          - "-Wall"
+    toplevel : serv_rf_top
+
+parameters:
+  PRE_REGISTER:
+    datatype    : int
+    description : Register signals before or after the decoder
+    paramtype   : vlogparam
+
+  RESET_STRATEGY:
+    datatype : str
+    paramtype : vlogparam
+
+  RISCV_FORMAL:
+    datatype  : bool
+    paramtype : vlogdefine
+
+  SERV_CLEAR_RAM:
+    datatype  : bool
+    paramtype : vlogdefine
+
+  WITH_CSR:
+    datatype  : int
+    paramtype : vlogparam
+
+provider:
+  name    : github
+  user    : olofk
+  repo    : serv
+  version : 1.1.0

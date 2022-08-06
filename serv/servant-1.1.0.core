@@ -78,6 +78,7 @@ filesets:
 
   tinyfpga_bx: {files: [data/tinyfpga_bx.pcf : {file_type : PCF}]}
   icebreaker : {files: [data/icebreaker.pcf  : {file_type : PCF}]}
+  icev_wireless : {files: [data/icev_wireless.pcf  : {file_type : PCF}]}
   icesugar   : {files: [data/icesugar.pcf : {file_type : PCF}]}
   alhambra   : {files: [data/alhambra.pcf : {file_type : PCF}]}
   icestick   : {files: [data/icestick.pcf  : {file_type : PCF}]}
@@ -182,7 +183,7 @@ targets:
         family : MAX 10
         device : 10M50DAF484C6GES
     toplevel: servive
-   
+
   de0_nano:
     default_tool : quartus
     filesets : [mem_files, soc, de0_nano]
@@ -209,6 +210,17 @@ targets:
     default_tool : icestorm
     filesets : [mem_files, soc, service, icebreaker]
     generate: [icebreaker_pll]
+    parameters : [memfile, memsize, PLL=ICE40_PAD]
+    tools:
+      icestorm:
+        nextpnr_options: [--up5k, --freq, 16]
+        pnr: next
+    toplevel : service
+
+  icev_wireless:
+    default_tool : icestorm
+    filesets : [mem_files, soc, service, icev_wireless]
+    generate: [icev_wireless_pll]
     parameters : [memfile, memsize, PLL=ICE40_PAD]
     tools:
       icestorm:
@@ -463,6 +475,11 @@ parameters:
 
 generate:
   icebreaker_pll:
+    generator: icepll
+    parameters:
+      freq_out : 16
+
+  icev_wireless_pll:
     generator: icepll
     parameters:
       freq_out : 16

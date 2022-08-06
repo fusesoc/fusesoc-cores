@@ -45,6 +45,7 @@ filesets:
 
   tinyfpga_bx: {files: [data/tinyfpga_bx.pcf : {file_type : PCF}]}
   icebreaker : {files: [data/icebreaker.pcf  : {file_type : PCF}]}
+  icev_wireless : {files: [data/icev_wireless.pcf  : {file_type : PCF}]}
 
   nexys_a7:
     files:
@@ -81,6 +82,17 @@ targets:
     default_tool : icestorm
     filesets : [mem_files, soc, service, icebreaker]
     generate: [icebreaker_pll]
+    parameters : [memfile, memsize, PLL=ICE40_PAD]
+    tools:
+      icestorm:
+        nextpnr_options: [--up5k, --freq, 16]
+        pnr: next
+    toplevel : service
+
+  icev_wireless:
+    default_tool : icestorm
+    filesets : [mem_files, soc, service, icev_wireless]
+    generate: [icev_wireless_pll]
     parameters : [memfile, memsize, PLL=ICE40_PAD]
     tools:
       icestorm:
@@ -217,6 +229,11 @@ parameters:
 
 generate:
   icebreaker_pll:
+    generator: icepll
+    parameters:
+      freq_out : 16
+
+  icev_wireless_pll:
     generator: icepll
     parameters:
       freq_out : 16

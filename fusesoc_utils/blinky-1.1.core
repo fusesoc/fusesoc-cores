@@ -148,6 +148,9 @@ filesets:
   icebreaker:
     files: [icebreaker/pinout.pcf : {file_type : PCF}]
 
+  icev_wireless:
+    files: [icev_wireless/pinout.pcf : {file_type : PCF}]
+
   iceFUN:
     files:
       - iceFUN/blinky.v : {file_type : verilogSource}
@@ -235,11 +238,11 @@ filesets:
 
   tinyfpga_bx:
     files: [tinyfpga_bx/pinout.pcf : {file_type : PCF}]
-  
+
   ultra96_v2:
     files:
       - ultra96_v2/blinky_ultra96_v2.v : {file_type : verilogSource}
-      - ultra96_v2/design_1_wrapper.v : {file_type : verilogSource}  
+      - ultra96_v2/design_1_wrapper.v : {file_type : verilogSource}
       - ultra96_v2/blinky.xdc : {file_type : xdc}
       - ultra96_v2/bd_ultra96_v2.tcl : {file_type : tclSource}
 
@@ -305,12 +308,12 @@ filesets:
       - stlv7325/blinky_stlv7325.sv : {file_type : systemVerilogSource}
 
   Wukong_v1:
-    files: 
+    files:
       - QMTECH_Artix7_Wukong/Wukong_v1.xdc : {file_type : xdc}
       - QMTECH_Artix7_Wukong/blinky.v : {file_type : verilogSource}
 
   Wukong_v2:
-    files: 
+    files:
       - QMTECH_Artix7_Wukong/Wukong_v2.xdc : {file_type : xdc}
       - QMTECH_Artix7_Wukong/blinky.v : {file_type : verilogSource}
 
@@ -683,6 +686,18 @@ targets:
         pnr: next
     toplevel : blinky
 
+  icev_wireless:
+    default_tool : icestorm
+    filesets : [rtl, proginfo, icev_wireless]
+    hooks:
+      post_run: [iceprog]
+    parameters : [clk_freq_hz=12000000]
+    tools:
+      icestorm:
+        nextpnr_options: [--up5k, --package, sg48]
+        pnr: next
+    toplevel : blinky
+
   iceFUN:
     default_tool : icestorm
     filesets : [iceFUN]
@@ -906,7 +921,7 @@ targets:
 
   ultra96_v2:
     default_tool : vivado
-    description : Zynq UltraScale+ MPSoC Ultra96-v2 Development Board 
+    description : Zynq UltraScale+ MPSoC Ultra96-v2 Development Board
     filesets : [rtl, ultra96_v2]
     tools:
       vivado:

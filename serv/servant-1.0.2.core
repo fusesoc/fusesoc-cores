@@ -45,6 +45,7 @@ filesets:
 
   tinyfpga_bx: {files: [data/tinyfpga_bx.pcf : {file_type : PCF}]}
   icebreaker : {files: [data/icebreaker.pcf  : {file_type : PCF}]}
+  icev_wirelsss : {files: [data/icev_wirelsss.pcf  : {file_type : PCF}]}
   alhambra   : {files: [data/alhambra.pcf : {file_type : PCF}]}
 
   lx9_microboard:
@@ -107,6 +108,17 @@ targets:
     default_tool : icestorm
     filesets : [mem_files, soc, service, icebreaker]
     generate: [icebreaker_pll]
+    parameters : [memfile, memsize, PLL=ICE40_PAD]
+    tools:
+      icestorm:
+        nextpnr_options: [--up5k, --freq, 16]
+        pnr: next
+    toplevel : service
+
+  icev_wirelsss:
+    default_tool : icestorm
+    filesets : [mem_files, soc, service, icev_wirelsss]
+    generate: [icev_wirelsss_pll]
     parameters : [memfile, memsize, PLL=ICE40_PAD]
     tools:
       icestorm:
@@ -304,6 +316,11 @@ parameters:
 
 generate:
   icebreaker_pll:
+    generator: icepll
+    parameters:
+      freq_out : 16
+
+  icev_wirelsss_pll:
     generator: icepll
     parameters:
       freq_out : 16

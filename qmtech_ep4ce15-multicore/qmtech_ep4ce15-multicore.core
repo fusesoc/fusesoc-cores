@@ -1,0 +1,58 @@
+CAPI=1
+[main]
+description = "Altera QMTECH EP4CE15 board OpenRISC multicore system"
+depend =
+ ::adv_debug_sys:3.1.0
+ ::altera_virtual_jtag:1.0
+ ::gpio:1.0
+ >=::jtag_tap:1.13
+ >=::mor1kx:0
+ ::or1k_bootloaders:0.9.1
+ >=::uart16550:1.5.5
+ >=::wb_intercon:1.2
+ ::wb_ram:1.1
+ ::wb_sdram_ctrl:0-r4
+ ::ompic:1.0
+ ::timer:1.0
+
+backend = quartus
+simulators = icarus
+
+[quartus]
+family = "Cyclone IV E"
+device = EP4CE15F23C8
+sdc_files = data/qmtech_ep4ce15.sdc
+tcl_files = data/pinmap.tcl
+            data/options.tcl
+
+[fileset rtl_files]
+files =
+ rtl/verilog/clkgen.v
+ rtl/verilog/orpsoc_top.v
+ backend/rtl/verilog/pll.v
+ rtl/verilog/rom.v
+ rtl/verilog/wb_intercon.v
+file_type = verilogSource
+
+[fileset include_files]
+files =
+ rtl/verilog/include/orpsoc-defines.v
+ rtl/verilog/include/timescale.v
+ rtl/verilog/include/uart_defines.v
+ rtl/verilog/wb_intercon.vh
+file_type = verilogSource
+is_include_file = true
+
+[fileset tb_private_src_files]
+files =
+ bench/orpsoc_tb.v
+ bench/uart_decoder.v
+file_type = verilogSource
+scope = private
+usage = sim
+
+[provider]
+name = github
+user = baselsayeh
+repo = qmtech_ep4ce15-multicore
+version = v1.0

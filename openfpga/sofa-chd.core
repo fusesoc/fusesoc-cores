@@ -1,0 +1,20 @@
+CAPI=2:
+
+name: openfpga:cores:sofa-chd:1.0
+description: Hard-IP 12x12 FPGA core, Skywater Open-source FpgA (SOFA), custom high-density design
+
+filesets:
+  rtl:
+    files:
+      - FPGA1212_SOFA_CHD_PNR/fpga_top/fpga_top_icv_in_design.top_only.pt.v
+    file_type: verilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+provider:
+  name    : github
+  user    : lnis-uofu
+  repo    : SOFA
+  version : 47b839fa0aafcef897674d4cf7c3a465f4a65e88

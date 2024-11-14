@@ -1,0 +1,53 @@
+CAPI=2:
+name: ::fplib:1.0.0
+description: "A fixed-point math library for SystemVerilog (synthesizable)"
+
+provider:
+  name    : github
+  user    : SkyworksSolutionsInc
+  repo    : fplib
+  version : v1.0.0
+
+filesets:
+
+  rtl:
+    files:
+      - rtl/fp_macros.svh : {is_include_file : true}
+      - rtl/clip.sv
+      - rtl/fp_if.sv
+      - rtl/fp_resize.sv
+      - rtl/fp_convert.sv
+      - rtl/fp_op_full.sv
+      - rtl/fp_op.sv
+    file_type: systemVerilogSource
+
+  tests:
+    files:
+      - tests/test_fplib_pkg.sv
+      - tests/test_fplib.sv
+    file_type: systemVerilogSource
+
+  examples:
+    files:
+      - examples/interp_fplib.sv
+      - examples/interp_no_fplib.sv
+    file_type: systemVerilogSource
+
+targets:
+
+  default: &default
+    filesets:
+      - rtl
+
+  sim:
+    <<: *default
+    description: Simulate the design
+    default_tool: xcelium
+    filesets_append:
+      - tests
+    toplevel: test_fplib
+    tools:
+      xcelium:
+        xrun_options:
+          - -vlogcontrolrelax NOTDOT
+

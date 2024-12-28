@@ -1,13 +1,13 @@
 CAPI=2:
-name : open-logic:tutorials:vivado_tutorial:2.3.1
-description : vivado tutorial for open-logic, targetting Zybo Z7-10 board
+name : open-logic:tutorials:vivado_tutorial:3.0.2
+description : official release (stable); vivado tutorial for open-logic, targetting Zybo Z7-10 board
 
 filesets:
 
   zybo_z7:
     files:
-      - vivado_tutorial.vhd : {file_type : vhdlSource}
-      - pinout.xdc : {file_type : xdc}
+      - doc/tutorials/VivadoTutorial/Files/vivado_tutorial.vhd : {file_type : vhdlSource}
+      - doc/tutorials/VivadoTutorial/Files/pinout.xdc : {file_type : xdc}
       
   rtl:
     files: [vivado_tutorial.vhd : {file_type : vhdlSource}]
@@ -33,4 +33,4 @@ provider:
   name    : github
   user    : open-logic
   repo    : open-logic
-  version : 2.3.1
+  version : 3.0.2

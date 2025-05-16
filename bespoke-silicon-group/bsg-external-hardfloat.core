@@ -1,0 +1,36 @@
+CAPI=2: ''
+name: bsg-external:hardfloat:0.0.1
+description: 'Berkeley Verilog HardFloat (mirror by University of Washington)'
+filesets:
+  rtl:
+    files:
+      - source/HardFloat_consts.vi:
+          is_include_file: true
+      - source/HardFloat_localFuncs.vi:
+          is_include_file: true
+      - source/RISCV/HardFloat_specialize.vi:
+          is_include_file: true
+      - source/RISCV/HardFloat_specialize.v
+      - source/bsg_hardfloat_pkg.sv
+      - source/HardFloat_primitives.v
+      - source/HardFloat_rawFN.v
+      - source/addRecFN.v
+      - source/compareRecFN.v
+      - source/divSqrtFN.v
+      - source/divSqrtRecFN.v
+      - source/divSqrtRecFN_medium.v
+      - source/divSqrtRecFN_small.v
+      - source/fNToRecFN.v
+      - source/iNToRecFN.v
+      - source/isSigNaNRecFN.v
+      - source/mulAddRecFN.v
+      - source/mulRecFN.v
+      - source/recFNToFN.v
+      - source/recFNToIN.v
+      - source/recFNToRecFN.v
+    file_type: systemVerilogSource
+provider:
+  name: github
+  user: bsg-external
+  repo: HardFloat
+  version: v0.0.1

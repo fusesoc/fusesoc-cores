@@ -1,0 +1,33 @@
+CAPI=2:
+
+name: ::or1ksim_trace:1.0
+description: "OpenRISC instruction trace routines from or1ksim"
+
+filesets:
+  verilator_tb:
+    files:
+      - cpu/or32/or32.c
+      - cpu/or1k/opcode/or32.h: {is_include_file: true}
+      - or1ksim_trace.c
+      - or1ksim_trace.h:        {is_include_file: true}
+    file_type: cSource
+
+targets:
+  default:
+    filesets: [verilator_tb]
+    parameters: [trace_enable]
+    tools:
+      verilator:
+        verilator_options: ["-CFLAGS -DOR1KSIM_TRACE_STANDALONE"]
+
+parameters:
+  trace_enable:
+    datatype: bool
+    description: Enable OpenRISC instruction tracing
+    paramtype: cmdlinearg
+
+provider:
+  name: github
+  user: openrisc
+  repo: or1ksim
+  version: trace-1.0

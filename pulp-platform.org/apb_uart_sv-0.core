@@ -16,6 +16,6 @@ targets: {default : {filesets : [rtl]}}
 
 provider:
   name    : github
-  user    : olofk
-  repo    : apb_uart_sv
-  version : 5309631455a5f41fed5793231ed11ac66ae31e17
+  user    : pulp-platform
+  repo    : apb_uart
+  version : 8182a85d234417db46fe833533f8536644d3bee3

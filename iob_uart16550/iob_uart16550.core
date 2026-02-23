@@ -1,0 +1,150 @@
+CAPI=2:
+
+name: iobundle:py2hwsw:iob_uart16550:0.1
+#license: MIT
+description: "IObundle's adaptation of the UART16550 from https://opencores.org/projects/uart16550."
+
+filesets:
+  rtl:
+    files:
+      - iob_uart16550/hardware/src/iob_reg_care_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/src/iob_reg_care.v
+      - iob_uart16550/hardware/src/iob_reg_cae_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/src/iob_reg_cae.v
+      - iob_uart16550/hardware/src/iob_iob2wishbone_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/src/iob_iob2wishbone.v
+      - iob_uart16550/hardware/src/iob_prio_enc_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/src/iob_prio_enc.v
+      - iob_uart16550/hardware/src/iob_coverage_analyze_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/src/raminfr.v
+      - iob_uart16550/hardware/src/uart_defines.vh: {is_include_file : true}
+      - iob_uart16550/hardware/src/uart_sync_flops.v
+      - iob_uart16550/hardware/src/uart_top.v
+      - iob_uart16550/hardware/src/uart_wb.v
+      - iob_uart16550/hardware/src/uart_debug_if.v
+      - iob_uart16550/hardware/src/uart_receiver.v
+      - iob_uart16550/hardware/src/uart_regs.v
+      - iob_uart16550/hardware/src/uart_rfifo.v
+      - iob_uart16550/hardware/src/uart_tfifo.v
+      - iob_uart16550/hardware/src/uart_transmitter.v
+      - iob_uart16550/hardware/src/iob_uart16550_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/src/iob_uart16550.v
+    file_type : verilogSource
+  sim:
+    files:
+      - iob_uart16550/hardware/simulation/src/iob_reg_car_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/simulation/src/iob_reg_car.v
+      - iob_uart16550/hardware/simulation/src/iob_demux_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/simulation/src/iob_demux.v
+      - iob_uart16550/hardware/simulation/src/iob_mux_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/simulation/src/iob_mux.v
+      - iob_uart16550/hardware/simulation/src/iob_reg_ca_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/simulation/src/iob_reg_ca.v
+      - iob_uart16550/hardware/simulation/src/tb_pbus_split_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/simulation/src/tb_pbus_split.v
+      - iob_uart16550/hardware/simulation/src/iob_uut_conf.vh: {is_include_file : true}
+      - iob_uart16550/hardware/simulation/src/iob_uut.v
+      - iob_uart16550/hardware/simulation/src/iob_v_tb.v
+      - iob_uart16550/hardware/simulation/src/iob_v_tb.vh: {is_include_file : true}
+    file_type : verilogSource
+  scripts:
+    files:
+      - iob_uart16550/scripts/iob_cov_analyze.py
+      - iob_uart16550/scripts/iob_colors.py
+      - iob_uart16550/scripts/board_client.py
+      - iob_uart16550/scripts/console.py
+      - iob_uart16550/scripts/console_ethernet.py
+      - iob_uart16550/scripts/makehex.py
+      - iob_uart16550/scripts/hex_join.py
+  sw:
+    files:
+      - iob_uart16550/config_build.mk
+      - iob_uart16550/software/Makefile
+      - iob_uart16550/software/sw_build.mk
+      - iob_uart16550/software/src/iob_iob2wishbone_conf.h
+      - iob_uart16550/software/src/iob_prio_enc_conf.h
+      - iob_uart16550/software/src/iob_coverage_analyze_conf.h
+      - iob_uart16550/software/src/iob_c_tb.c
+      - iob_uart16550/software/src/iob_vlt_tb.cpp
+      - iob_uart16550/software/src/iob_uart16550.h
+      - iob_uart16550/software/src/iob_core_tb.c
+      - iob_uart16550/software/src/iob_uart16550.c
+      - iob_uart16550/software/src/iob_uart16550_csrs.c
+      - iob_uart16550/software/src/iob_uart16550_csrs.h
+      - iob_uart16550/software/src/iob_uart16550_conf.h
+      - iob_uart16550/software/src/iob_reg_care_conf.h
+      - iob_uart16550/software/src/iob_reg_cae_conf.h
+      - iob_uart16550/software/src/hw_driver.c
+      - iob_uart16550/software/simulation/src/iob_demux_conf.h
+      - iob_uart16550/software/simulation/src/iob_mux_conf.h
+      - iob_uart16550/software/simulation/src/tb_pbus_split_conf.h
+      - iob_uart16550/software/simulation/src/iob_uut_conf.h
+      - iob_uart16550/software/simulation/src/iob_reg_car_conf.h
+      - iob_uart16550/software/simulation/src/iob_reg_ca_conf.h
+      - iob_uart16550/software/zynq_ps/Makefile
+      - iob_uart16550/software/zynq_ps/lscript.ld
+      - iob_uart16550/software/zynq_ps/prog.tcl
+      - iob_uart16550/software/zynq_ps/sw_build.tcl
+      - iob_uart16550/software/zynq_ps/src/main.c
+      - iob_uart16550/software/test/iob-uart-test.c
+
+
+targets:
+  default:
+    filesets:
+      - rtl
+  sim:
+    toplevel: iob_v_tb
+    description: Simulate the design, using board_client.py to manage simulation processes and timeout.
+    # Generic flow only runs the build step by default.
+    flow: generic
+    flow_options:
+      tool: icarus
+      iverilog_options:
+        - -W
+        - all
+        - -g2005-sv
+    filesets:
+      - rtl
+      - sim
+    hooks:
+      post_build:
+        - sw_build
+        - clean
+        - board_client
+
+scripts:
+  clean:
+    cmd:
+      - rm
+      - -f
+      - c2v.txt
+      - v2c.txt
+
+
+  sw_build:
+    cmd:
+      - make
+      - -C
+      - src/iobundle_py2hwsw_iob_uart16550_0.1/iob_uart16550/software
+      - build
+      #- USE_FPGA=$(USE_FPGA)
+    filesets:
+      - sw
+
+
+  board_client:
+    cmd:
+      - src/iobundle_py2hwsw_iob_uart16550_0.1/iob_uart16550/scripts/board_client.py
+      - grab
+      - "300"
+      - -s
+      #run the C testbench in background and kill it when simulator exits
+      - "'./src/iobundle_py2hwsw_iob_uart16550_0.1/iob_uart16550/software/tb & make run && (kill $$! >/dev/null 2>&1; true) || (kill $$! >/dev/null 2>&1; false)'"
+    filesets:
+      - scripts
+
+provider:
+  name: url
+  url: https://github.com/IObundle/iob-uart16550/releases/latest/download/iob_uart16550_V0.1.tar.gz
+  filetype: tar

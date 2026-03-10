@@ -1,0 +1,295 @@
+CAPI=2:
+
+name: iobundle:py2hwsw:iob_eth:0.1
+#license: MIT
+description: "IObundle's ethernet core. Driver-compatible with the [ethmac](https://opencores.org/projects/ethmac) core, containing a similar Control/Status Register interface."
+
+filesets:
+  rtl:
+    files:
+      - iob_eth/hardware/src/iob_eth_csrs.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_reg_ca_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_reg_ca.v
+      - iob_eth/hardware/src/iob_reg_cae_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_reg_cae.v
+      - iob_eth/hardware/src/iob_reverse_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_reverse.v
+      - iob_eth/hardware/src/iob_prio_enc_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_prio_enc.v
+      - iob_eth/hardware/src/iob_ctls_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_ctls.v
+      - iob_eth/hardware/src/iob_universal_converter_iob_iob_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_universal_converter_iob_iob.v
+      - iob_eth/hardware/src/iob_eth_csrs_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_eth_csrs.v
+      - iob_eth/hardware/src/iob_reg_car_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_reg_car.v
+      - iob_eth/hardware/src/iob_reg_care_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_reg_care.v
+      - iob_eth/hardware/src/iob_acc_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_acc.v
+      - iob_eth/hardware/src/iob_reg_a_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_reg_a.v
+      - iob_eth/hardware/src/iob_sync_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_sync.v
+      - iob_eth/hardware/src/iob_ram_at2p_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_ram_at2p.v
+      - iob_eth/hardware/src/iob_ram_tdp_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_ram_tdp.v
+      - iob_eth/hardware/src/iob_arbiter.v
+      - iob_eth/hardware/src/iob_priority_encoder.v
+      - iob_eth/hardware/src/iob_arbiter_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_tasks_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/src/iob_eth.v
+      - iob_eth/hardware/src/iob_eth_crc.v
+      - iob_eth/hardware/src/iob_eth_dma.v
+      - iob_eth/hardware/src/iob_eth_rx.v
+      - iob_eth/hardware/src/iob_eth_tx.v
+      - iob_eth/hardware/src/iob_eth_conf.vh: {is_include_file : true}
+    file_type : verilogSource
+  sim:
+    files:
+      - iob_eth/hardware/simulation/src/iob_axistream_in_csrs.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axistream_out_csrs.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_dma_csrs.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_counter_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_counter.v
+      - iob_eth/hardware/simulation/src/iob_axistream_in_csrs_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axistream_in_csrs.v
+      - iob_eth/hardware/simulation/src/iob_modcnt_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_modcnt.v
+      - iob_eth/hardware/simulation/src/iob_fifo2axis_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_fifo2axis.v
+      - iob_eth/hardware/simulation/src/iob_gray_counter_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_gray_counter.v
+      - iob_eth/hardware/simulation/src/iob_gray2bin_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_gray2bin.v
+      - iob_eth/hardware/simulation/src/iob_functions_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_asym_converter_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_asym_converter.v
+      - iob_eth/hardware/simulation/src/iob_clock_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_clock.v
+      - iob_eth/hardware/simulation/src/iob_fifo_async_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_fifo_async.v
+      - iob_eth/hardware/simulation/src/iob_edge_detect_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_edge_detect.v
+      - iob_eth/hardware/simulation/src/iob_axistream_in.v
+      - iob_eth/hardware/simulation/src/iob_axistream_in_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axistream_out_csrs_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axistream_out_csrs.v
+      - iob_eth/hardware/simulation/src/iob_axistream_out.v
+      - iob_eth/hardware/simulation/src/iob_axistream_out_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_demux_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_demux.v
+      - iob_eth/hardware/simulation/src/iob_mux_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_mux.v
+      - iob_eth/hardware/simulation/src/tb_pbus_split_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/tb_pbus_split.v
+      - iob_eth/hardware/simulation/src/iob_dma_csrs_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_dma_csrs.v
+      - iob_eth/hardware/simulation/src/iob_ram_t2p_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_ram_t2p.v
+      - iob_eth/hardware/simulation/src/iob_fifo_sync_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_fifo_sync.v
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_read_int.v
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_read_int_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_read.v
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_read_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_write_int.v
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_write_int_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_write.v
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_write_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m.v
+      - iob_eth/hardware/simulation/src/iob_axis_s_axi_m_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_dma_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_dma.v
+      - iob_eth/hardware/simulation/src/iob_axi_interconnect.v
+      - iob_eth/hardware/simulation/src/iob_axi_interconnect_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_axi_ram.v
+      - iob_eth/hardware/simulation/src/iob_axi_ram_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_ram_t2p_be_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_ram_t2p_be.v
+      - iob_eth/hardware/simulation/src/iob_uut_conf.vh: {is_include_file : true}
+      - iob_eth/hardware/simulation/src/iob_uut.v
+      - iob_eth/hardware/simulation/src/iob_v_tb.v
+      - iob_eth/hardware/simulation/src/iob_v_tb.vh: {is_include_file : true}
+    file_type : verilogSource
+  scripts:
+    files:
+      - iob_eth/scripts/iob_colors.py
+      - iob_eth/scripts/board_client.py
+      - iob_eth/scripts/console.py
+      - iob_eth/scripts/console_ethernet.py
+      - iob_eth/scripts/makehex.py
+      - iob_eth/scripts/hex_join.py
+  sw:
+    files:
+      - iob_eth/config_build.mk
+      - iob_eth/software/Makefile
+      - iob_eth/software/sw_build.mk
+      - iob_eth/software/src/iob_reverse_conf.h
+      - iob_eth/software/src/iob_prio_enc_conf.h
+      - iob_eth/software/src/iob_ctls_conf.h
+      - iob_eth/software/src/iob_universal_converter_iob_iob_conf.h
+      - iob_eth/software/src/iob_eth_csrs_conf.h
+      - iob_eth/software/src/iob_ram_at2p_conf.h
+      - iob_eth/software/src/iob_ram_tdp_conf.h
+      - iob_eth/software/src/iob_arbiter_conf.h
+      - iob_eth/software/src/iob_tasks_conf.h
+      - iob_eth/software/src/iob_c_tb.c
+      - iob_eth/software/src/iob_vlt_tb.cpp
+      - iob_eth/software/src/iob_core_tb.c
+      - iob_eth/software/src/eth_frame_struct.h
+      - iob_eth/software/src/eth_mem_map.h
+      - iob_eth/software/src/example_firmware.c
+      - iob_eth/software/src/iob_eth.c
+      - iob_eth/software/src/iob_eth.h
+      - iob_eth/software/src/iob_eth_defines.h
+      - iob_eth/software/src/iob_eth_macros.h
+      - iob_eth/software/src/iob_eth_rmac.h
+      - iob_eth/software/src/iob_eth_swreg_pc_emul.c
+      - iob_eth/software/src/iob_eth_conf.h
+      - iob_eth/software/src/iob_eth_csrs.h
+      - iob_eth/software/src/iob_eth_csrs.c
+      - iob_eth/software/src/iob_reg_ca_conf.h
+      - iob_eth/software/src/iob_reg_cae_conf.h
+      - iob_eth/software/src/iob_reg_car_conf.h
+      - iob_eth/software/src/iob_reg_care_conf.h
+      - iob_eth/software/src/iob_acc_conf.h
+      - iob_eth/software/src/iob_reg_a_conf.h
+      - iob_eth/software/src/iob_sync_conf.h
+      - iob_eth/software/src/hw_driver.c
+      - iob_eth/software/simulation/sw_build.mk
+      - iob_eth/software/simulation/src/iob_reverse_conf.h
+      - iob_eth/software/simulation/src/iob_prio_enc_conf.h
+      - iob_eth/software/simulation/src/iob_ctls_conf.h
+      - iob_eth/software/simulation/src/iob_universal_converter_iob_iob_conf.h
+      - iob_eth/software/simulation/src/iob_axistream_in_csrs_conf.h
+      - iob_eth/software/simulation/src/iob_fifo2axis_conf.h
+      - iob_eth/software/simulation/src/iob_gray_counter_conf.h
+      - iob_eth/software/simulation/src/iob_gray2bin_conf.h
+      - iob_eth/software/simulation/src/iob_functions_conf.h
+      - iob_eth/software/simulation/src/iob_asym_converter_conf.h
+      - iob_eth/software/simulation/src/iob_ram_at2p_conf.h
+      - iob_eth/software/simulation/src/iob_clock_conf.h
+      - iob_eth/software/simulation/src/iob_fifo_async_conf.h
+      - iob_eth/software/simulation/src/iob_edge_detect_conf.h
+      - iob_eth/software/simulation/src/iob_axistream_in.c
+      - iob_eth/software/simulation/src/iob_axistream_in.h
+      - iob_eth/software/simulation/src/iob_axistream_in_swreg_pc_emul.c
+      - iob_eth/software/simulation/src/iob_core_tb.c
+      - iob_eth/software/simulation/src/iob_axistream_in_conf.h
+      - iob_eth/software/simulation/src/iob_axistream_out_csrs_conf.h
+      - iob_eth/software/simulation/src/iob_axistream_out.c
+      - iob_eth/software/simulation/src/iob_axistream_out.h
+      - iob_eth/software/simulation/src/iob_axistream_out_swreg_pc_emul.c
+      - iob_eth/software/simulation/src/iob_axistream_out_conf.h
+      - iob_eth/software/simulation/src/iob_demux_conf.h
+      - iob_eth/software/simulation/src/iob_mux_conf.h
+      - iob_eth/software/simulation/src/tb_pbus_split_conf.h
+      - iob_eth/software/simulation/src/iob_dma_csrs_conf.h
+      - iob_eth/software/simulation/src/iob_ram_t2p_conf.h
+      - iob_eth/software/simulation/src/iob_fifo_sync_conf.h
+      - iob_eth/software/simulation/src/iob_axis_s_axi_m_read_int_conf.h
+      - iob_eth/software/simulation/src/iob_axis_s_axi_m_read_conf.h
+      - iob_eth/software/simulation/src/iob_axis_s_axi_m_write_int_conf.h
+      - iob_eth/software/simulation/src/iob_axis_s_axi_m_write_conf.h
+      - iob_eth/software/simulation/src/iob_axis_s_axi_m_conf.h
+      - iob_eth/software/simulation/src/iob_dma.c
+      - iob_eth/software/simulation/src/iob_dma.h
+      - iob_eth/software/simulation/src/iob_dma_conf.h
+      - iob_eth/software/simulation/src/iob_arbiter_conf.h
+      - iob_eth/software/simulation/src/iob_axi_ram_conf.h
+      - iob_eth/software/simulation/src/iob_ram_t2p_be_conf.h
+      - iob_eth/software/simulation/src/iob_eth_tb_driver.c
+      - iob_eth/software/simulation/src/iob_eth_tb_driver.h
+      - iob_eth/software/simulation/src/iob_axistream_in_csrs.h
+      - iob_eth/software/simulation/src/iob_axistream_in_csrs.c
+      - iob_eth/software/simulation/src/iob_axistream_out_csrs.h
+      - iob_eth/software/simulation/src/iob_axistream_out_csrs.c
+      - iob_eth/software/simulation/src/iob_dma_csrs.h
+      - iob_eth/software/simulation/src/iob_dma_csrs.c
+      - iob_eth/software/simulation/src/iob_reg_care_conf.h
+      - iob_eth/software/simulation/src/iob_counter_conf.h
+      - iob_eth/software/simulation/src/iob_reg_ca_conf.h
+      - iob_eth/software/simulation/src/iob_reg_cae_conf.h
+      - iob_eth/software/simulation/src/iob_reg_car_conf.h
+      - iob_eth/software/simulation/src/iob_modcnt_conf.h
+      - iob_eth/software/simulation/src/iob_reg_a_conf.h
+      - iob_eth/software/simulation/src/iob_sync_conf.h
+      - iob_eth/software/simulation/src/iob_axi_interconnect_conf.h
+      - iob_eth/software/simulation/src/iob_uut_conf.h
+      - iob_eth/software/simulation/linux/README.md
+      - iob_eth/software/simulation/linux/iob_axistream_in.dts
+      - iob_eth/software/simulation/linux/iob_axistream_out.dts
+      - iob_eth/software/simulation/linux/drivers/driver.mk
+      - iob_eth/software/simulation/linux/drivers/iob_axistream_in_main.c
+      - iob_eth/software/simulation/linux/drivers/iob_axistream_out_main.c
+      - iob_eth/software/zynq_ps/Makefile
+      - iob_eth/software/zynq_ps/lscript.ld
+      - iob_eth/software/zynq_ps/prog.tcl
+      - iob_eth/software/zynq_ps/sw_build.tcl
+      - iob_eth/software/zynq_ps/src/main.c
+      - iob_eth/software/console/eth_console
+      - iob_eth/software/console/eth_console.license
+
+
+targets:
+  default:
+    filesets:
+      - rtl
+  sim:
+    toplevel: iob_v_tb
+    description: Simulate the design, using board_client.py to manage simulation processes and timeout.
+    # Generic flow only runs the build step by default.
+    flow: generic
+    flow_options:
+      tool: icarus
+      iverilog_options:
+        - -W
+        - all
+        - -g2005-sv
+    filesets:
+      - rtl
+      - sim
+    hooks:
+      post_build:
+        - sw_build
+        - clean
+        - board_client
+
+scripts:
+  clean:
+    cmd:
+      - rm
+      - -f
+      - c2v.txt
+      - v2c.txt
+
+
+  sw_build:
+    cmd:
+      - make
+      - -C
+      - src/iobundle_py2hwsw_iob_eth_0.1/iob_eth/software
+      - build
+      #- USE_FPGA=$(USE_FPGA)
+    filesets:
+      - sw
+
+
+  board_client:
+    cmd:
+      - src/iobundle_py2hwsw_iob_eth_0.1/iob_eth/scripts/board_client.py
+      - grab
+      - "300"
+      - -s
+      #run the C testbench in background and kill it when simulator exits
+      - "'./src/iobundle_py2hwsw_iob_eth_0.1/iob_eth/software/tb & make run && (kill $$! >/dev/null 2>&1; true) || (kill $$! >/dev/null 2>&1; false)'"
+    filesets:
+      - scripts
+
+provider:
+  name: url
+  url: https://github.com/IObundle/iob-eth/releases/latest/download/iob_eth_V0.1.tar.gz
+  filetype: tar

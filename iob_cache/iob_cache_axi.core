@@ -1,0 +1,184 @@
+CAPI=2:
+
+name: iobundle:py2hwsw:iob_cache_axi:0.71
+#license: MIT
+description: "IOb-cache is a high-performance, configurable open-source Verilog cache. If you use or like this core, please cite the following article: Roque, J.V.; Lopes, J.D.; Véstias, M.P.; de Sousa, J.T. IOb-Cache: A High-Performance Configurable Open-Source Cache. Algorithms 2021, 14, 218. https://doi.org/10.3390/a14080218"
+
+filesets:
+  rtl:
+    files:
+      - iob_cache_axi/hardware/src/iob_cache_control.v
+      - iob_cache_axi/hardware/src/iob_cache_axi_csrs.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_reg_cae_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_reg_cae.v
+      - iob_cache_axi/hardware/src/iob_cache_front_end_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_cache_front_end.v
+      - iob_cache_axi/hardware/src/iob_ram_t2p_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_ram_t2p.v
+      - iob_cache_axi/hardware/src/iob_reg_car_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_reg_car.v
+      - iob_cache_axi/hardware/src/iob_reg_care_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_reg_care.v
+      - iob_cache_axi/hardware/src/iob_counter_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_counter.v
+      - iob_cache_axi/hardware/src/iob_functions_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_asym_converter_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_asym_converter.v
+      - iob_cache_axi/hardware/src/iob_fifo_sync_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_fifo_sync.v
+      - iob_cache_axi/hardware/src/iob_ram_sp_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_ram_sp.v
+      - iob_cache_axi/hardware/src/iob_regarray_sp_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_regarray_sp.v
+      - iob_cache_axi/hardware/src/iob_cache_onehot_to_bin.v
+      - iob_cache_axi/hardware/src/iob_cache_gen_sp_ram.v
+      - iob_cache_axi/hardware/src/iob_cache_memory.v
+      - iob_cache_axi/hardware/src/iob_cache_replacement_policy.v
+      - iob_cache_axi/hardware/src/iob_cache_memory_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_cache_back_end_axi.v
+      - iob_cache_axi/hardware/src/iob_cache_read_channel_axi.v
+      - iob_cache_axi/hardware/src/iob_cache_write_channel_axi.v
+      - iob_cache_axi/hardware/src/iob_cache_back_end_axi_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_cache_control_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_reg_ca_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_reg_ca.v
+      - iob_cache_axi/hardware/src/iob_reverse_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_reverse.v
+      - iob_cache_axi/hardware/src/iob_prio_enc_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_prio_enc.v
+      - iob_cache_axi/hardware/src/iob_ctls_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_ctls.v
+      - iob_cache_axi/hardware/src/iob_universal_converter_iob_iob_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_universal_converter_iob_iob.v
+      - iob_cache_axi/hardware/src/iob_cache_axi_csrs_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_cache_axi_csrs.v
+      - iob_cache_axi/hardware/src/iob_coverage_analyze_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_cache_axi_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/src/iob_cache_axi.v
+    file_type : verilogSource
+  sim:
+    files:
+      - iob_cache_axi/hardware/simulation/src/iob_tasks_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/simulation/src/iob_axi_ram.v
+      - iob_cache_axi/hardware/simulation/src/iob_axi_ram_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/simulation/src/iob_ram_t2p_be_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/simulation/src/iob_ram_t2p_be.v
+      - iob_cache_axi/hardware/simulation/src/iob_uut_conf.vh: {is_include_file : true}
+      - iob_cache_axi/hardware/simulation/src/iob_uut.v
+      - iob_cache_axi/hardware/simulation/src/iob_v_tb.v
+      - iob_cache_axi/hardware/simulation/src/iob_v_tb.vh: {is_include_file : true}
+    file_type : verilogSource
+  scripts:
+    files:
+      - iob_cache_axi/scripts/iob_cov_analyze.py
+      - iob_cache_axi/scripts/iob_colors.py
+      - iob_cache_axi/scripts/board_client.py
+      - iob_cache_axi/scripts/console.py
+      - iob_cache_axi/scripts/console_ethernet.py
+      - iob_cache_axi/scripts/makehex.py
+      - iob_cache_axi/scripts/hex_join.py
+  sw:
+    files:
+      - iob_cache_axi/config_build.mk
+      - iob_cache_axi/software/Makefile
+      - iob_cache_axi/software/sw_build.mk
+      - iob_cache_axi/software/src/iob_ram_t2p_conf.h
+      - iob_cache_axi/software/src/iob_functions_conf.h
+      - iob_cache_axi/software/src/iob_asym_converter_conf.h
+      - iob_cache_axi/software/src/iob_ram_sp_conf.h
+      - iob_cache_axi/software/src/iob_regarray_sp_conf.h
+      - iob_cache_axi/software/src/iob_cache_control_conf.h
+      - iob_cache_axi/software/src/iob_reverse_conf.h
+      - iob_cache_axi/software/src/iob_prio_enc_conf.h
+      - iob_cache_axi/software/src/iob_ctls_conf.h
+      - iob_cache_axi/software/src/iob_universal_converter_iob_iob_conf.h
+      - iob_cache_axi/software/src/iob_coverage_analyze_conf.h
+      - iob_cache_axi/software/src/iob_c_tb.c
+      - iob_cache_axi/software/src/iob_vlt_tb.cpp
+      - iob_cache_axi/software/src/iob_cache_axi_csrs_pc_emul.c
+      - iob_cache_axi/software/src/iob_cache_axi_csrs.h
+      - iob_cache_axi/software/src/iob_cache_axi_csrs.c
+      - iob_cache_axi/software/src/iob_reg_cae_conf.h
+      - iob_cache_axi/software/src/iob_cache_front_end_conf.h
+      - iob_cache_axi/software/src/iob_reg_car_conf.h
+      - iob_cache_axi/software/src/iob_reg_care_conf.h
+      - iob_cache_axi/software/src/iob_counter_conf.h
+      - iob_cache_axi/software/src/iob_fifo_sync_conf.h
+      - iob_cache_axi/software/src/iob_cache_memory_conf.h
+      - iob_cache_axi/software/src/iob_cache_back_end_axi_conf.h
+      - iob_cache_axi/software/src/iob_reg_ca_conf.h
+      - iob_cache_axi/software/src/iob_cache_axi_csrs_conf.h
+      - iob_cache_axi/software/src/hw_driver.c
+      - iob_cache_axi/software/src/iob_core_tb.c
+      - iob_cache_axi/software/src/iob_cache_axi_conf.h
+      - iob_cache_axi/software/simulation/src/iob_tasks_conf.h
+      - iob_cache_axi/software/simulation/src/iob_axi_ram_conf.h
+      - iob_cache_axi/software/simulation/src/iob_ram_t2p_conf.h
+      - iob_cache_axi/software/simulation/src/iob_ram_t2p_be_conf.h
+      - iob_cache_axi/software/simulation/src/iob_uut_conf.h
+      - iob_cache_axi/software/zynq_ps/Makefile
+      - iob_cache_axi/software/zynq_ps/lscript.ld
+      - iob_cache_axi/software/zynq_ps/prog.tcl
+      - iob_cache_axi/software/zynq_ps/sw_build.tcl
+      - iob_cache_axi/software/zynq_ps/src/main.c
+
+
+targets:
+  default:
+    filesets:
+      - rtl
+  sim:
+    toplevel: iob_v_tb
+    description: Simulate the design, using board_client.py to manage simulation processes and timeout.
+    # Generic flow only runs the build step by default.
+    flow: generic
+    flow_options:
+      tool: icarus
+      iverilog_options:
+        - -W
+        - all
+        - -g2005-sv
+    filesets:
+      - rtl
+      - sim
+    hooks:
+      post_build:
+        - sw_build
+        - clean
+        - board_client
+
+scripts:
+  clean:
+    cmd:
+      - rm
+      - -f
+      - c2v.txt
+      - v2c.txt
+
+
+  sw_build:
+    cmd:
+      - make
+      - -C
+      - src/iobundle_py2hwsw_iob_cache_axi_0.71/iob_cache_axi/software
+      - build
+      #- USE_FPGA=$(USE_FPGA)
+    filesets:
+      - sw
+
+
+  board_client:
+    cmd:
+      - src/iobundle_py2hwsw_iob_cache_axi_0.71/iob_cache_axi/scripts/board_client.py
+      - grab
+      - "300"
+      - -s
+      #run the C testbench in background and kill it when simulator exits
+      - "'./src/iobundle_py2hwsw_iob_cache_axi_0.71/iob_cache_axi/software/tb & make run && (kill $$! >/dev/null 2>&1; true) || (kill $$! >/dev/null 2>&1; false)'"
+    filesets:
+      - scripts
+
+provider:
+  name: url
+  url: https://github.com/IObundle/iob-cache/releases/latest/download/iob_cache_axi_V0.71.tar.gz
+  filetype: tar
